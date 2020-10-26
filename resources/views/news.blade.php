@@ -15,6 +15,7 @@
             .block{display: inline-block;}
             .p-3{padding: 0.7rem;}
             .bg-gray-200{background-color: #dcdede;}
+            .max-w-3xl{max-width:36rem}
         </style>
 
         <style>
@@ -24,16 +25,28 @@
         </style>
     </head>
     <body class="antialiased">
-    <div class="flex justify-center bg-gray-200 text-lg mr-2">
-        <a href="{{ url('/') }}" class="text-gray-700 font-semibold block p-3 p">Awesome news</a>
-        <a href="{{ url('/') }}" class="text-sm text-gray-700 underline block p-3 p">Home</a>
-        <a href="{{ url('/info') }}" class="text-sm text-gray-700 underline block p-3">About project</a>
-        <a href="{{ url('/news') }}" class="text-sm text-gray-700 underline block p-3">News</a>
-    </div>
-    <div class="flex justify-center pt-8">
-        <div class="pt-3">
-            <h1>Welcome to the awesome news channel!</h1>
+        <div class="flex justify-center bg-gray-200 text-lg mr-2">
+            <a href="{{ url('/') }}" class="text-gray-700 font-semibold block p-3 p">Awesome news</a>
+            <a href="{{ url('/') }}" class="text-sm text-gray-700 underline block p-3 p">Home</a>
+            <a href="{{ url('/info') }}" class="text-sm text-gray-700 underline block p-3">About project</a>
+            <a href="{{ url('/news') }}" class="text-sm text-gray-700 underline block p-3">News</a>
         </div>
-    </div>
+        <div class="flex justify-center pt-8">
+            <div class="pt-3">
+                <h1>News # {{ $newsNumber }}</h1>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <div class="max-w-3xl p-3">
+                <p class="p-6 bg-gray-100 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci
+                    aliquam
+                    asperiores commodi
+                    consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem
+                    sapiente vel.
+                </p>
+                <a href="{{ url('/news') }}" class="text-sm text-gray-700 underline block p-3">Back to all news >></a>
+            </div>
+
+        </div>
     </body>
 </html>
