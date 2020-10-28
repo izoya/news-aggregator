@@ -13,18 +13,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+  Route::get('/news', [\App\Http\Controllers\Admin\NewsController::class, 'index'])
+    ->name('admin.news');
+  Route::get('/news/create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])
+    ->name('admin.news.create');
+  Route::get('/news/edit/{id}', [\App\Http\Controllers\Admin\NewsController::class, 'edit'])
+    ->where('id', '\d+')
+    ->name('admin.news.edit');
+  Route::get('/news/destroy/{id}', [\App\Http\Controllers\Admin\NewsController::class, 'destroy'])
+    ->where('id', '\d+')
+    ->name('admin.news.destroy');
 });
 
-Route::get('/info', function () {
-    return view('info');
-});
 
-Route::get('/news', function () {
-    return view('newsAll');
-});
+Route::get('/cat', [\App\Http\Controllers\CategoryController::class, 'index'])
+  ->name('category');
 
-Route::get('/news/{newsNumber}', function ($newsNumber) {
-    return view('news', ['newsNumber' => $newsNumber]);
-});
+
+
+Route::get('/news', [\App\Http\Controllers\NewsController::class, 'index'])
+  ->name('news');
+Route::get('/news/cat/{id}', [\App\Http\Controllers\NewsController::class, 'showFromCategory'])
+  ->where('id', '\d+')->name('news.cat');
+Route::get('/news/{slug}', [\App\Http\Controllers\NewsController::class, 'show'])
+  ->where('slug', '\w+')->name('news.show');
+
+Route::get('/auth', [\App\Http\Controllers\AuthController::class, 'index'])
+  ->name('auth');
+
+
+//
+//Route::get('/news', function () {
+//    return view('newsAll');
+//});
+//
+//Route::get('/news/{newsNumber}', function ($newsNumber) {
+//    return view('news', ['newsNumber' => $newsNumber]);
+//});
