@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name('home');
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -34,7 +35,6 @@ Route::get('/cat', [\App\Http\Controllers\CategoryController::class, 'index'])
   ->name('category');
 
 
-
 Route::get('/news', [\App\Http\Controllers\NewsController::class, 'index'])
   ->name('news');
 Route::get('/news/cat/{id}', [\App\Http\Controllers\NewsController::class, 'showFromCategory'])
@@ -42,15 +42,12 @@ Route::get('/news/cat/{id}', [\App\Http\Controllers\NewsController::class, 'show
 Route::get('/news/{slug}', [\App\Http\Controllers\NewsController::class, 'show'])
   ->where('slug', '\w+')->name('news.show');
 
+
 Route::get('/auth', [\App\Http\Controllers\AuthController::class, 'index'])
   ->name('auth');
 
 
-//
-//Route::get('/news', function () {
-//    return view('newsAll');
-//});
-//
-//Route::get('/news/{newsNumber}', function ($newsNumber) {
-//    return view('news', ['newsNumber' => $newsNumber]);
-//});
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

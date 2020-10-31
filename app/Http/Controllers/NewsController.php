@@ -10,140 +10,140 @@ class NewsController extends Controller
     [
       'id' => 1,
       'slug' => 'one',
-      'category' => 1,
+      'category_id' => 1,
       'title' => 'First news',
       'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 2,
       'slug' => 'two',
-      'category' => 1,
+      'category_id' => 1,
       'title' => 'Second news',
       'description' => 'Lorem ipsum dolor sit amet, aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 3,
       'slug' => 'three',
-      'category' => 1,
+      'category_id' => 1,
       'title' => 'Third news',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 4,
       'slug' => 'four',
-      'category' => 1,
+      'category_id' => 1,
       'title' => 'Forth news',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 5,
       'slug' => 'five',
-      'category' => 2,
+      'category_id' => 2,
       'title' => 'Commodi 2-5',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 6,
       'slug' => 'six',
-      'category' => 2,
+      'category_id' => 2,
       'title' => 'Commodi 2-6',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 7,
       'slug' => 'seven',
-      'category' => 2,
+      'category_id' => 2,
       'title' => 'Commodi 2-7',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 8,
       'slug' => 'eight',
-      'category' => 2,
+      'category_id' => 2,
       'title' => 'Commodi 2-8',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 9,
       'slug' => 'nine',
-      'category' => 3,
+      'category_id' => 3,
       'title' => 'Accusamus 3-9',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 10,
       'slug' => 'ten',
-      'category' => 3,
+      'category_id' => 3,
       'title' => 'Accusamus 3-10',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 11,
       'slug' => 'eleven',
-      'category' => 3,
+      'category_id' => 3,
       'title' => 'Accusamus 3-11',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 12,
       'slug' => 'twelve',
-      'category' => 3,
+      'category_id' => 3,
       'title' => 'Accusamus 3-12',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 13,
       'slug' => 'thirteen',
-      'category' => 4,
+      'category_id' => 4,
       'title' => 'Lorem 4-13',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 14,
       'slug' => 'fourteen',
-      'category' => 4,
+      'category_id' => 4,
       'title' => 'Lorem 4-14',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 15,
       'slug' => 'fifteen',
-      'category' => 4,
+      'category_id' => 4,
       'title' => 'Lorem 4-15',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 16,
       'slug' => 'sixteen',
-      'category' => 4,
+      'category_id' => 4,
       'title' => 'Lorem 4-16',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 17,
       'slug' => 'seventeen',
-      'category' => 5,
+      'category_id' => 5,
       'title' => 'News 5-17',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 18,
       'slug' => 'eighteen',
-      'category' => 5,
+      'category_id' => 5,
       'title' => 'News 5-18',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 19,
       'slug' => 'nineteen',
-      'category' => 5,
+      'category_id' => 5,
       'title' => 'Lorem consectetur 5-19',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
     [
       'id' => 20,
       'slug' => 'twenty',
-      'category' => 5,
+      'category_id' => 5,
       'title' => 'Lorem consectetur 5-20',
       'description' => 'Lorem consectetur adipisicing elit. Accusamus adipisci aliquam asperiores commodi consequuntur corporis culpa cumque error iste iure modi natus, non officiis quaerat quo ratione rem',
     ],
@@ -153,7 +153,8 @@ class NewsController extends Controller
   {
     return view('news.index', [
       'news' => $this->newsList,
-      'category' => null,
+      'category' => 'All News',
+      'categories' => $this->categories,
     ]);
   }
 
@@ -166,19 +167,27 @@ class NewsController extends Controller
     }
 
     return view('news.show', [
-      'news' => $this->newsList[$news_id]
+      'news' => $this->newsList[$news_id],
+      'categories' => $this->categories,
     ]);
   }
 
   public function showFromCategory(int $id)
   {
     $newsFromCategory = [];
+
     foreach ($this->newsList as $news) {
-      if ($news['category'] == $id) $newsFromCategory[] = $news;
+      if (is_array($news)) {
+        if (isset($news['category_id']) && intval($news['category_id']) === $id) {
+          $newsFromCategory[] = $news;
+        }
+      }
     }
+
     return view('news.index', [
       'category' => $this->getCategories()[$id],
       'news' => $newsFromCategory,
+      'categories' => $this->categories,
     ]);
   }
 }

@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.main')
 
-  <title>Laravel</title>
-  <link rel="stylesheet" type="text/css" property="stylesheet" href="/css/app.css">
-</head>
-<body>
+@section('content')
 
-<div class="container mt-5">
   <div class="col-6">
     <h1 class="display-4">Create news</h1>
     <form>
@@ -39,8 +31,6 @@
       <button type="submit" class="btn btn-primary">Create</button>
     </form>
   </div>
-</div>
 
 
-</body>
-</html>
+@endsection
