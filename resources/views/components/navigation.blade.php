@@ -25,7 +25,9 @@
           <li class="nav-item">
             <a class="nav-link text-warning" href="{{ route('admin.news.create') }}">Create news</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link text-warning" href="{{ route('order') }}">Extract data</a>
+          </li>
         </ul>
         <!-- Search Box here -->
 

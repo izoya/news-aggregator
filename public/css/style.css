@@ -1053,15 +1053,15 @@ figure:hover figcaption {
   transition: all 0.3s ease-in-out
 }
 
-#contactForm {
+#userForm {
   margin-top: -10px
 }
 
-#contactForm .form-group label.control-label {
+#userForm .form-group label.control-label {
   color: #8c8c8c
 }
 
-#contactForm .form-control {
+#userForm .form-control {
   font-weight: 500;
   height: auto
 }

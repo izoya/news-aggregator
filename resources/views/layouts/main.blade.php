@@ -30,7 +30,7 @@
   <!-- Responsive CSS -->
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
   <!-- App CSS -->
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}{{ '?t=' }}@php echo microtime(true); @endphp">
   <!-- Color CSS Styles  -->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/colors/blue.css') }}" media="screen" />
 
@@ -45,14 +45,29 @@
 
   {{-- Content --}}
   <div class="container my-5">
-
-
   @yield('content')
-
   </div>
 
   {{-- Footer --}}
   <x-footer></x-footer>
-
+  <script src="{{ asset('js/jquery-min.js') }}"></script>
+  <script src="{{ asset('js/popper.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.mixitup.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.inview.js') }}"></script>
+  <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+  <script src="{{ asset('js/scroll-top.js') }}"></script>
+  <script src="{{ asset('js/smoothscroll.js') }}"></script>
+  <script src="{{ asset('js/material.min.js') }}"></script>
+  <script src="{{ asset('js/ripples.min.js') }}"></script>
+  <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('js/form-validator.min.js') }}"></script>
+  <script src="{{ asset('js/contact-form-script.min.js') }}"></script>
+  <script src="{{ asset('js/wow.js') }}"></script>
+  <script src="{{ asset('js/jquery.vide.js') }}"></script>
+  <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
+  <script src="{{ asset('js/main.js') }}"></script>
+@stack('js')
 </body>
 </html>

@@ -7,11 +7,12 @@
         <h3 class="footer-title">About Us</h3>
         <p>Lorem ipsum dolor sit amet. Voluptates eos minus expedita illo recusandae
           esse labore obcaecati nisi amet.</p>
-        <ul class="icon-list w-100 d-block">
-          <li><i class="mdi mdi-map-marker"></i> 548 Sydney, NSW </li>
-          <li><i class="mdi mdi-email"></i> <a href="mailto:mail@material.com" class="nocolor">mail@material.com</a>
+        <ul class="icon-list w-100 d-block pr-5">
+          <li class=" pr-5"><i class="mdi mdi-map-marker"></i> @include('includes.address')</li>
+          <li class=" pr-5"><i class="mdi mdi-email"></i>
+            <a href="mailto:mail@material.com" class="nocolor"> @include('includes.email')</a>
           </li>
-          <li><i class="mdi mdi-phone-classic"></i> +7 (924) 100 78 78 </li>
+          <li><i class="mdi mdi-phone-classic"></i> @include('includes.phone')</li>
         </ul>
         <ul class="">
           <li><a href="#"><i class="mdi mdi-facebook"></i></a></li>
@@ -82,7 +83,7 @@
             <li><a href="#" class="nocolor">Terms of Use</a></li>
             <li><a href="#" class="nocolor">Privacy Policy</a></li>
             <li><a href="#" class="nocolor">Company Profile</a></li>
-            <li><a href="#" class="nocolor">Why Choose Us</a></li>
+            <li><a href="{{ route('about.feedback') }}" class="nocolor text-bold">Contact us</a></li>
           </ul>
         </div>
       </div>

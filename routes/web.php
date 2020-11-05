@@ -18,16 +18,11 @@ Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name
 
 
 Route::group(['prefix' => 'admin'], function () {
-  Route::get('/news', [\App\Http\Controllers\Admin\NewsController::class, 'index'])
-    ->name('admin.news');
-  Route::get('/news/create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])
-    ->name('admin.news.create');
-  Route::get('/news/edit/{id}', [\App\Http\Controllers\Admin\NewsController::class, 'edit'])
-    ->where('id', '\d+')
-    ->name('admin.news.edit');
-  Route::get('/news/destroy/{id}', [\App\Http\Controllers\Admin\NewsController::class, 'destroy'])
-    ->where('id', '\d+')
-    ->name('admin.news.destroy');
+  Route::resource('news', \App\Http\Controllers\Admin\NewsController::class)
+    ->names([
+      'index' =>'admin.news',
+      'create' => 'admin.news.create',
+  ]);
 });
 
 
@@ -41,6 +36,15 @@ Route::get('/news/cat/{id}', [\App\Http\Controllers\NewsController::class, 'show
   ->where('id', '\d+')->name('news.cat');
 Route::get('/news/{slug}', [\App\Http\Controllers\NewsController::class, 'show'])
   ->where('slug', '\w+')->name('news.show');
+
+
+Route::get('/feedback', function (){
+  return view('about.feedback');
+})->name('about.feedback');
+
+Route::resource('about', \App\Http\Controllers\AboutController::class);
+Route::resource('order', \App\Http\Controllers\OrderController::class)
+  ->name('create', 'order');
 
 
 Route::get('/auth', [\App\Http\Controllers\AuthController::class, 'index'])
