@@ -8,10 +8,11 @@ use Illuminate\View\Component;
 class Title extends Component
 {
     public $title = '';
-  /**
+
+    /**
      * Create a new component instance.
      *
-     * @return void
+     * @param $title
      */
     public function __construct($title)
     {

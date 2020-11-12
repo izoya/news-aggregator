@@ -23,8 +23,8 @@
                   id="content" rows="4">{!! old('content') !!}</textarea>
       </div>
       <div class="form-group">
-        <label for="category">Category</label>
-        <select class="form-control" name="category" id="category">
+        <label for="category_id">Category</label>
+        <select class="form-control" name="category_id" id="category_id">
             @forelse($categories as $cat)
                 <option @if(old('category') == $cat->id) selected @endif
                     value="{{ $cat->id }}">{{ $cat->title }}</option>

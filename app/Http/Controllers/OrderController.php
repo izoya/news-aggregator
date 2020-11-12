@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use function response;
@@ -44,9 +45,11 @@ class OrderController extends Controller
       ]);
 
       $data = $request->except(['_token']);
-      $handle = fopen(storage_path('app/extractOrders.txt'), 'a');
 
-      fwrite($handle, serialize($data) . PHP_EOL);
+      $order = new Order();
+      $result = $order->fill($data)->save();
+
+      if (!$result) return response('error', 501);
 
       return response('success', 200);
       // return \response()->json(['created' => true]);

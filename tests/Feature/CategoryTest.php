@@ -23,7 +23,7 @@ class CategoryTest extends TestCase
     {
         $category = new Category();
         $category_name = $category
-            ->getCategoryById($category->getCategories()->random()->id)->title;
+            ->find($category->all()->random()->id)->title;
         $view = $this->blade('<x-aside-categories/>');
 
         $view

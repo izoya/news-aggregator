@@ -24,9 +24,8 @@ class NewsTest extends TestCase
 
     public function testOneNewsPage()
     {
-        $news = new News();
-        $slug = $news->getNewsById($news->getNews()->random()->id)->slug;
-        $response = $this->get('/news/' . $slug);
+        $news = News::all()->random();
+        $response = $this->get('/news/' . $news->slug);
 
         $response->assertStatus(200);
     }
@@ -34,7 +33,7 @@ class NewsTest extends TestCase
     public function testNewsByCategory()
     {
         $category = new Category();
-        $catId = $category->getCategories()->random()->id;
+        $catId = $category->all()->random()->id;
         $response = $this->get('/news/cat/' . $catId);
 
         $response->assertStatus(200);
@@ -45,9 +44,8 @@ class NewsTest extends TestCase
     public function testNewsCategoryTitle()
     {
         $view = $this->view('news.index', [
-            'category' => 'MyTitle',
+            'title' => 'MyTitle',
             'news' => [],
-            'categories' => [],
         ]);
 
         $view->assertSee('MyTitle');

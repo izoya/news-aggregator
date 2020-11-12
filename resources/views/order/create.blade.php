@@ -34,7 +34,7 @@
       <div class="form-group label-floating is-empty">
         <label for="request" class="control-label">Request</label>
         <textarea class="form-control" rows="3" id="request" name="request" required=""
-                  data-error="Describe the data you are seeking for.">{{ old('request') }}"</textarea>
+                  data-error="Describe the data you are seeking for.">{{ old('request') }}</textarea>
         <div class="help-block with-errors"></div>
       </div>
 

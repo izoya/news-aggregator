@@ -27,7 +27,7 @@ class NewsTest extends TestCase
             'category' => '1',
         ]);
 
-        $response->assertRedirect('admin/news');
+        $response->assertRedirect('/news/my-title');
     }
 
 //    public function testAdminNewsFormHandler()

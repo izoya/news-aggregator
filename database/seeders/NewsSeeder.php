@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use DB;
 use Faker\Factory;
+use Faker\Provider\Company;
 use Illuminate\Database\Seeder;
 use Str;
 

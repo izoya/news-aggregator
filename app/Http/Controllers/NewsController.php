@@ -11,24 +11,25 @@ class NewsController extends Controller
 
     public function index(News $news)
     {
-        return view('news.index', [
-            'news' => $news->getNews(),
-            'category' => 'All News',
+        $news = News::query()->orderBy('created_at', 'desc')->paginate(10);
 
+        return view('news.index', [
+            'news' => $news,
+            'title' => 'All News',
         ]);
     }
 
-    public function show(string $slug, News $news)
+    public function show(string $slug)
     {
+        $news = News::query()->where('slug', '=', $slug)->first();
+
+        if (!$news) {
+            return abort(404);
+        }
+
         return view('news.show')
-            ->with('news', $news->getNewsBySlug($slug));
+            ->with('news', $news);
     }
 
-    public function showFromCategory(int $catId, News $news, Category $category)
-    {
-        return view('news.index', [
-            'category' => $category->getCategoryById($catId)->title,
-            'news' => $news->getNewsByCategory($catId),
-        ]);
-    }
+
 }

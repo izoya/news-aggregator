@@ -14570,7 +14570,6 @@
 
         namespace Barryvdh\Debugbar {
 
-            use;
             use Closure;
             use DebugBar\DataCollectorInterface;
             use DebugBar\HttpDriverInterface;

@@ -53,7 +53,7 @@
       <div class="form-group label-floating is-empty">
         <label for="message" class="control-label">Message</label>
         <textarea class="form-control" rows="3" id="message" name="message" required=""
-                  data-error="Write your message">{{ old('message') }}"</textarea>
+                  data-error="Write your message">{{ old('message') }}</textarea>
         <div class="help-block with-errors"></div>
       </div>
 

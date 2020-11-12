@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Storage;
+use Str;
 
 class NewsController extends Controller
 {
@@ -34,7 +35,7 @@ class NewsController extends Controller
     public function create(Category $category)
     {
         return response()->view('admin.news.create', [
-            'categories' => $category->getCategories(),
+            'categories' => $category->all(),
         ]);
     }
 
@@ -51,20 +52,22 @@ class NewsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'content' => 'required',
-            'category' => 'required',
+            'category_id' => 'required',
         ]);
 
-        $filename = storage_path('') . '/data/news.json';
+        $data = $request->only(['title', 'description']);
+        $news = new News();
+        $news->slug = Str::slug($data['title']);
+        $news->image = null;
+        $result = $news->fill($data)->save();
 
-        if (File::exists($filename)) {
-            $data = json_decode(File::get($filename));
+        if(!$result) {
+            return redirect()->back()
+                ->with('error', __('alerts.error.addNews'));
         }
 
-        $data[] = $request->except(['_token']);
-
-        File::put($filename, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
-        return redirect()->route('admin.news')->with('success', __('alerts.success.addNews'));
+        return redirect()->route('news.show', ['slug' => $news->slug])
+            ->with('success', __('alerts.success.addNews'));
     }
 
     /**

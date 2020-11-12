@@ -20,7 +20,7 @@ class CreateNewsTable extends Migration
             $table->string('image', 255)->nullable();
             $table->text('description');
             $table->boolean('is_published')->default(true);
-            $table->unsignedBigInteger('source_id');
+            $table->unsignedBigInteger('source_id')->default(1);
             $table->timestamps();
 
             $table->foreign('source_id')->on('sources')->references('id');

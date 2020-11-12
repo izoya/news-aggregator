@@ -39,7 +39,7 @@ Route::get('/cat', [CategoryController::class, 'index'])
 
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news');
-    Route::get('/cat/{id}', [NewsController::class, 'showFromCategory'])
+    Route::get('/cat/{id}', [CategoryController::class, 'show'])
         ->where('id', '\d+')->name('news.category');
     Route::get('/{slug}', [NewsController::class, 'show'])
         // ->where('slug', '\w+')
@@ -48,7 +48,11 @@ Route::prefix('news')->group(function () {
 
 
 Route::resource('feedback', FeedbackController::class)
-    ->name('index', 'feedback');
+    ->names([
+        'index'  => 'feedback',
+        'create' => 'feedback.create',
+        'store'  => 'feedback.store',
+        ]);
 
 
 Route::resource('order', OrderController::class)

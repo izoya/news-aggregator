@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use stdClass;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
@@ -14,13 +12,8 @@ class Category extends Model
 
     protected $table = 'categories';
 
-    public function getCategories(): Collection
+    public function news(): BelongsToMany
     {
-        return DB::table($this->table)->get();
-    }
-
-    public function getCategoryById(int $id): stdClass
-    {
-        return DB::table($this->table)->find($id);
+        return $this->belongsToMany(News::class, 'news_categories', 'category_id', 'news_id');
     }
 }
