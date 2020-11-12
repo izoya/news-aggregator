@@ -21,10 +21,12 @@ class CategoryTest extends TestCase
      */
     public function testSideCategoriesComponent()
     {
-        $category = Category::getCategoryById(array_rand(Category::getCategories()));
+        $category = new Category();
+        $category_name = $category
+            ->getCategoryById($category->getCategories()->random()->id)->title;
         $view = $this->blade('<x-aside-categories/>');
 
         $view
-          ->assertSee($category);
+          ->assertSee($category_name);
     }
 }

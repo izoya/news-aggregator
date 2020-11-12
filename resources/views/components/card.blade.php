@@ -4,22 +4,22 @@
 
     <div class="featured-image">
       <a href="#">
-        <img src="{{ asset('images/blog/featured' . $id . '.jpg') }}" alt="">
+        <img src="{{ asset('images/blog/featured' . $news->id . '.jpg') }}" alt="">
       </a>
     </div>
 
     <div class="post-meta">
-      <div class="post-date"><span><b>Jan 25 2020</b></span></div>
+      <div class="post-date"><span><b>{{ \Carbon\Carbon::parse($news->created_at)->format('M d Y') }}</b></span></div>
 
-      <a href="{{ route('news.show', ['slug' => $news['slug']]) }}">
-        <h2 class="subtitle">{{ $news['title'] }}</h2>
+      <a href="{{ route('news.show', ['slug' => $news->slug]) }}">
+        <h2 class="subtitle">{{ $news->title }}</h2>
       </a>
-      <p>{{ $news['description'] }}</p>
+      <p>{{ $news->description }}</p>
     </div>
 
     <div class="meta-tags">
       <span class="comments"><a href="#"><i class="mdi mdi-comment-outline"></i> 24 Comments</a></span>
-      <a class="btn btn-round btn-fab" href="{{ route('news.show', ['slug' => $news['slug']]) }}"><i
+      <a class="btn btn-round btn-fab" href="{{ route('news.show', ['slug' => $news->slug]) }}"><i
           class="material-icons mdi mdi-arrow-right"></i>
         <div class="ripple-container"></div>
       </a>

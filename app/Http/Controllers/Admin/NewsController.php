@@ -28,12 +28,13 @@ class NewsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Category $category
      * @return Response
      */
-    public function create()
+    public function create(Category $category)
     {
         return response()->view('admin.news.create', [
-            'categories' => Category::getCategories(),
+            'categories' => $category->getCategories(),
         ]);
     }
 

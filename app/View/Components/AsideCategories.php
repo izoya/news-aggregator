@@ -13,11 +13,11 @@ class AsideCategories extends Component
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param Category $category
      */
-    public function __construct()
+    public function __construct(Category $category)
     {
-        $this->categories = Category::getCategories();
+        $this->categories = $category->getCategories();
     }
 
     /**

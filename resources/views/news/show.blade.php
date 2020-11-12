@@ -12,10 +12,16 @@
                    animation-delay: .2s;">
                         @if($news)
                             <div class="post-image">
-                                <img src="{{ asset('images/blog/post-image.jpg') }}" class="img-fluid" alt="">
+                                <img src="
+                                    @if($news->image)
+                                      {{ asset('images/news/' .$news->image) }}
+                                    @else
+                                      {{ asset('images/blog/post-image.jpg') }}
+                                    @endif
+                                    " class="img-fluid" alt="">
                             </div>
-                            <h2>{{ $news['title'] }}</h2>
-                            <p>{{ $news['description'] }}</p>
+                            <h2>{{ $news->title }}</h2>
+                            <p>{{ $news->description }}</p>
                             <div class="single-post-meta">
                                 <div class="post-tag">
                                     <a href="#"><i class="material-icons mdi mdi-bookmark-outline"></i>

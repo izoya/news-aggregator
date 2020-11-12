@@ -42,7 +42,8 @@ Route::prefix('news')->group(function () {
     Route::get('/cat/{id}', [NewsController::class, 'showFromCategory'])
         ->where('id', '\d+')->name('news.category');
     Route::get('/{slug}', [NewsController::class, 'show'])
-        ->where('slug', '\w+')->name('news.show');
+        // ->where('slug', '\w+')
+        ->name('news.show');
     });
 
 

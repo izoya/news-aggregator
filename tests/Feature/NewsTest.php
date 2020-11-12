@@ -24,7 +24,8 @@ class NewsTest extends TestCase
 
     public function testOneNewsPage()
     {
-        $slug = News::getNewsById(array_rand(News::getNews()))['slug'];
+        $news = new News();
+        $slug = $news->getNewsById($news->getNews()->random()->id)->slug;
         $response = $this->get('/news/' . $slug);
 
         $response->assertStatus(200);
@@ -32,7 +33,8 @@ class NewsTest extends TestCase
 
     public function testNewsByCategory()
     {
-        $catId = array_rand(Category::getCategories());
+        $category = new Category();
+        $catId = $category->getCategories()->random()->id;
         $response = $this->get('/news/cat/' . $catId);
 
         $response->assertStatus(200);

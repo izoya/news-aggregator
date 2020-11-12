@@ -6,8 +6,10 @@
   </div>
   <div class="pt-2 pb-1">
     <ul class="categories-list">
-      @foreach($categories as $id=>$cat)
-        <li><a href="{{ route('news.category', ['id' => $id]) }}">{{$cat}}</a></li>
+      @foreach($categories as $cat)
+        <li>
+          <a href="{{ route('news.category', ['id' => $cat->id]) }}">{{$cat->title}}</a>
+        </li>
       @endforeach
     </ul>
   </div>

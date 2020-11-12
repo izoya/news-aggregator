@@ -2,31 +2,25 @@
 
 namespace App\Models;
 
+use DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+use stdClass;
 
 class Category extends Model
 {
     use HasFactory;
 
-    private static $categories = [
-        1 => 'Tech',
-        2 => 'Business',
-        3 => 'Education',
-        4 => 'Sport',
-        5 => 'Entertainment',
-        6 => 'Lifestyle'
-    ];
+    protected $table = 'categories';
 
-    public static function getCategories(): array
+    public function getCategories(): Collection
     {
-        return static::$categories;
+        return DB::table($this->table)->get();
     }
 
-    public static function getCategoryById(int $id): string
+    public function getCategoryById(int $id): stdClass
     {
-        if (array_key_exists($id, static::$categories)) return static::$categories[$id];
-
-        return '';
+        return DB::table($this->table)->find($id);
     }
 }

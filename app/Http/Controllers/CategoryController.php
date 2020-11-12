@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-  public function index() {
-    return view('category.index', ['categories' => Category::getCategories()]);
+    public function index(Category $category)
+    {
+        return view('category.index', ['categories' => $category->getCategories()]);
   }
 
 }

@@ -13,8 +13,8 @@
           <div class="row">
 
             <div class="col-md-12 card-deck no-padding">
-              @forelse($news as $id=>$n)
-                <x-card :news="$n" :id="$id"/>
+              @forelse($news as $n)
+                <x-card :news="$n"/>
                 @empty
                   <p>Oops, seems like there's no news in there...</p>
                 @endforelse
