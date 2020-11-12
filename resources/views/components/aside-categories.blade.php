@@ -7,7 +7,7 @@
   <div class="pt-2 pb-1">
     <ul class="categories-list">
       @foreach($categories as $id=>$cat)
-        <li><a href="{{ route('news.cat', ['id' => $id]) }}">{{$cat}}</a></li>
+        <li><a href="{{ route('news.category', ['id' => $id]) }}">{{$cat}}</a></li>
       @endforeach
     </ul>
   </div>

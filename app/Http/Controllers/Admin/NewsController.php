@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\News;
+use File;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Storage;
 
 class NewsController extends Controller
 {
@@ -17,8 +21,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-      return response()->view('admin.news.index');
-      // return response()->json($this->newsList);
+        return response()->view('admin.news.index');
+        // return response()->json(News::getNews());
     }
 
     /**
@@ -28,7 +32,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return response()->view('admin.news.create');
+        return response()->view('admin.news.create', [
+            'categories' => Category::getCategories(),
+        ]);
     }
 
     /**
@@ -36,22 +42,34 @@ class NewsController extends Controller
      *
      * @param Request $request
      * @return Response | RedirectResponse
+     * @throws FileNotFoundException
      */
     public function store(Request $request)
     {
-      $request->validate([
-        'title' => 'required',
-      ]);
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'category' => 'required',
+        ]);
 
-      $data = $request->except(['_token']);
+        $filename = storage_path('') . '/data/news.json';
 
-      return redirect()->route('admin.news');
+        if (File::exists($filename)) {
+            $data = json_decode(File::get($filename));
+        }
+
+        $data[] = $request->except(['_token']);
+
+        File::put($filename, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+        return redirect()->route('admin.news')->with('success', __('alerts.success.addNews'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param News $news
      * @return Response
      */
     public function show(News $news)
@@ -62,7 +80,7 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param News $news
      * @return Response
      */
     public function edit(News $news)
@@ -74,7 +92,7 @@ class NewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  \App\Models\News  $news
+     * @param News $news
      * @return Response
      */
     public function update(Request $request, News $news)
@@ -85,7 +103,7 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\News  $news
+     * @param News $news
      * @return Response
      */
     public function destroy(News $news)

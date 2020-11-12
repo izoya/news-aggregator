@@ -2,11 +2,12 @@
 
 namespace App\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Title extends Component
 {
-    public string $title = '';
+    public $title = '';
   /**
      * Create a new component instance.
      *
@@ -20,7 +21,7 @@ class Title extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|string
+     * @return View|string
      */
     public function render()
     {

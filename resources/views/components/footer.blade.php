@@ -83,7 +83,7 @@
             <li><a href="#" class="nocolor">Terms of Use</a></li>
             <li><a href="#" class="nocolor">Privacy Policy</a></li>
             <li><a href="#" class="nocolor">Company Profile</a></li>
-            <li><a href="{{ route('about.feedback') }}" class="nocolor text-bold">Contact us</a></li>
+            <li><a href="{{ route('feedback') }}" class="nocolor text-bold">Contact us</a></li>
           </ul>
         </div>
       </div>

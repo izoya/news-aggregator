@@ -8,17 +8,42 @@ use Tests\TestCase;
 
 class NewsTest extends TestCase
 {
-  /**
-   * A basic feature test example.
-   *
-   * @return void
-   */
-  public function testAdminNewsRedirect()
-  {
-    $response = $this->post('/admin/news/', [
-      'title' => 'My Title',
-    ]);
 
-    $response->assertRedirect('admin/news');
-  }
+    public function testAdminCreateNews()
+    {
+        $response = $this->get('/admin/news/create');
+        $response->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testAdminNewsRedirect()
+    {
+        $response = $this->post('/admin/news/', [
+            'title' => 'My title',
+            'description' => 'description',
+            'content' => 'content',
+            'category' => '1',
+        ]);
+
+        $response->assertRedirect('admin/news');
+    }
+
+//    public function testAdminNewsFormHandler()
+//    {
+//        $response = $this->post('/order', [
+//            'title' => 'title',
+//            'description' => 'description',
+//            'content' => 'content',
+//            'category' => '1',
+//        ]);
+//
+//        $response
+//            ->dump()
+//            ->assertStatus(200)
+//            ->assertSeeText('success')
+//        ;
+//    }
+
 }

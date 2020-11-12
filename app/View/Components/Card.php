@@ -2,25 +2,30 @@
 
 namespace App\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class card extends Component
+class Card extends Component
 {
-  public array $news;
+    public $news;
+    public $id;
+
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param $news
+     * @param $id
      */
-    public function __construct($news)
+    public function __construct($news, $id)
     {
         $this->news = $news;
+        $this->id = $id;
     }
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|string
+     * @return View|string
      */
     public function render()
     {

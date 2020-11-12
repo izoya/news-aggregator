@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,44 +20,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name('home');
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
 
-Route::group(['prefix' => 'admin'], function () {
-  Route::resource('news', \App\Http\Controllers\Admin\NewsController::class)
-    ->names([
-      'index' =>'admin.news',
-      'create' => 'admin.news.create',
-  ]);
-});
+Route::prefix('admin')->group(function () {
+    Route::resource('news', \App\Http\Controllers\Admin\NewsController::class)
+        ->names([
+            'index' => 'admin.news',
+            'create' => 'admin.news.create',
+            'store' => 'admin.news.store',
+        ]);
+    });
 
 
-Route::get('/cat', [\App\Http\Controllers\CategoryController::class, 'index'])
-  ->name('category');
+Route::get('/cat', [CategoryController::class, 'index'])
+    ->name('category');
 
 
-Route::get('/news', [\App\Http\Controllers\NewsController::class, 'index'])
-  ->name('news');
-Route::get('/news/cat/{id}', [\App\Http\Controllers\NewsController::class, 'showFromCategory'])
-  ->where('id', '\d+')->name('news.cat');
-Route::get('/news/{slug}', [\App\Http\Controllers\NewsController::class, 'show'])
-  ->where('slug', '\w+')->name('news.show');
+Route::prefix('news')->group(function () {
+    Route::get('/', [NewsController::class, 'index'])->name('news');
+    Route::get('/cat/{id}', [NewsController::class, 'showFromCategory'])
+        ->where('id', '\d+')->name('news.category');
+    Route::get('/{slug}', [NewsController::class, 'show'])
+        ->where('slug', '\w+')->name('news.show');
+    });
 
 
-Route::get('/feedback', function (){
-  return view('about.feedback');
-})->name('about.feedback');
-
-Route::resource('about', \App\Http\Controllers\AboutController::class);
-Route::resource('order', \App\Http\Controllers\OrderController::class)
-  ->name('create', 'order');
+Route::resource('feedback', FeedbackController::class)
+    ->name('index', 'feedback');
 
 
-Route::get('/auth', [\App\Http\Controllers\AuthController::class, 'index'])
-  ->name('auth');
+Route::resource('order', OrderController::class)
+    ->name('create', 'order');
+
+
+Route::get('/auth', [AuthController::class, 'index'])
+    ->name('auth');
 
 
 Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-

@@ -25,13 +25,13 @@ class OrderTest extends TestCase
       'name' => 'Sally',
       'email' => 'some@mail.com',
       'phone' => '7775577',
-      'request' => 'request',
+      'request' => 'request'
     ]);
 
     $response
       ->dump()
       ->assertStatus(200)
-//    ->assertJson(['created' => true])
+//      ->assertJson(['created' => true])
       ->assertSeeText('success')
       ;
   }

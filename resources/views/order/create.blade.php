@@ -13,28 +13,28 @@
       <div class="form-group label-floating is-empty">
         <label class="control-label" for="name">Name</label>
         <input class="form-control" id="name" type="text" name="name" required=""
-               data-error="Please enter your name">
+               data-error="Please enter your name" value="{{ old('name') }}">
         <div class="help-block with-errors"></div>
       </div>
 
       <div class="form-group label-floating is-empty">
         <label class="control-label" for="email">Email</label>
         <input class="form-control" id="email" type="email" name="email" required=""
-               data-error="Please enter your Email">
+               data-error="Please enter your Email" value="{{ old('email') }}">
         <div class="help-block with-errors"></div>
       </div>
 
       <div class="form-group label-floating is-empty">
         <label class="control-label" for="phone">Phone number</label>
         <input class="form-control" id="phone" type="tel" name="phone" required=""
-               data-error="Please enter your phone number">
+               data-error="Please enter your phone number"  value="{{ old('phone') }}">
         <div class="help-block with-errors"></div>
       </div>
 
       <div class="form-group label-floating is-empty">
         <label for="request" class="control-label">Request</label>
         <textarea class="form-control" rows="3" id="request" name="request" required=""
-                  data-error="Describe the data you are seeking for."></textarea>
+                  data-error="Describe the data you are seeking for.">{{ old('request') }}"</textarea>
         <div class="help-block with-errors"></div>
       </div>
 

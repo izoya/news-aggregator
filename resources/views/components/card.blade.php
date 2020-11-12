@@ -4,7 +4,7 @@
 
     <div class="featured-image">
       <a href="#">
-        <img src="{{ asset('images/blog/featured' . $news['id'] . '.jpg') }}" alt="">
+        <img src="{{ asset('images/blog/featured' . $id . '.jpg') }}" alt="">
       </a>
     </div>
 

@@ -2,12 +2,18 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
+    public function testCategoryIndex()
+    {
+        $response = $this->get('/cat');
+        $response->assertStatus(200);
+    }
     /**
      * A basic feature test example.
      *
@@ -15,16 +21,10 @@ class CategoryTest extends TestCase
      */
     public function testSideCategoriesComponent()
     {
-        $view = $this->blade('<x-aside-categories :categories="$categories"/>',
-        [
-          'categories' => [
-            'First category',
-            'Second category'
-          ],
-        ]);
+        $category = Category::getCategoryById(array_rand(Category::getCategories()));
+        $view = $this->blade('<x-aside-categories/>');
 
         $view
-          ->assertSee('First category')
-          ->assertSee('Second category');
+          ->assertSee($category);
     }
 }

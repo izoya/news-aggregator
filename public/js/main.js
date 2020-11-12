@@ -1,19 +1,19 @@
 (function($) {
-  
-  "use strict";  
+
+  "use strict";
 
   $(window).on('load', function() {
   	// Material
 	$.material.init();
 
-	// Dropdown 
+	// Dropdown
   	$('.dropdown-toggle').dropdown()
 
   	$('.search-icon').on('click',function() {
     $('.navbar-form').fadeIn(300);
     $('.navbar-form input').focus();
 	  });
-	  $('.navbar-form input').blur(function() {
+	$('.navbar-form input').blur(function() {
 	    $('.navbar-form').fadeOut(300);
 	 });
 
@@ -123,17 +123,17 @@
             });
             $(this).off('inview');
         }
-    });	
+    });
 
 	// MixitUp Init
-	$('#Material-portfolio').mixItUp(); 
+	$('#Material-portfolio').mixItUp();
 
     $('#myTab a').on('click',function (e) {
 	  e.preventDefault()
 	  $(this).tab('show')
 	})
 
-	// Slick Nav 
+	// Slick Nav
     $('.wpb-mobile-menu').slicknav({
       prependTo: '.navbar-header',
       parentTag: 'span',
@@ -154,7 +154,7 @@
 	      $('.back-to-top').fadeOut(400);
 	    }
 	  });
-	  
+
 	  $('.back-to-top').click(function(event) {
 	    event.preventDefault();
 	    $('html, body').animate({
@@ -163,7 +163,7 @@
 	    return false;
 	  });
 
-  });      
+  });
 
 }(jQuery));
 

@@ -32,28 +32,28 @@
       <div class="form-group label-floating is-empty">
         <label class="control-label" for="name">Name</label>
         <input class="form-control" id="name" type="text" name="name" required=""
-               data-error="Please enter your name">
+               data-error="Please enter your name" value="{{ old('name') }}">
         <div class="help-block with-errors"></div>
       </div>
 
       <div class="form-group label-floating is-empty">
         <label class="control-label" for="email">Email</label>
         <input class="form-control" id="email" type="email" name="email" required=""
-               data-error="Please enter your Email">
+               data-error="Please enter your Email" value="{{ old('email') }}">
         <div class="help-block with-errors"></div>
       </div>
 
       <div class="form-group label-floating is-empty">
         <label class="control-label" for="msgSubject">Subject</label>
         <input class="form-control" id="subject" type="text" name="subject" required=""
-               data-error="Please enter your message subject" >
+               data-error="Please enter your message subject" value="{{ old('subject') }}">
         <div class="help-block with-errors"></div>
       </div>
 
       <div class="form-group label-floating is-empty">
         <label for="message" class="control-label">Message</label>
         <textarea class="form-control" rows="3" id="message" name="message" required=""
-                  data-error="Write your message"></textarea>
+                  data-error="Write your message">{{ old('message') }}"</textarea>
         <div class="help-block with-errors"></div>
       </div>
 
@@ -74,7 +74,7 @@
 <script lang="javascript">
 
 function getFormAction() {
-  return "{{ route('about.store') }}"
+  return "{{ route('feedback.store') }}"
 }
 
 </script>
