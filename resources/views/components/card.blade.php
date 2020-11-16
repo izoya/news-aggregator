@@ -4,12 +4,12 @@
 
     <div class="featured-image">
       <a href="#">
-        <img src="{{ asset('images/blog/featured' . $news->id . '.jpg') }}" alt="">
+        <img src="{{ asset('images/news/' . $news->image) }}" alt="">
       </a>
     </div>
 
     <div class="post-meta">
-      <div class="post-date"><span><b>{{ \Carbon\Carbon::parse($news->created_at)->format('M d Y') }}</b></span></div>
+      <div class="post-date"><span><b>{{ $news->created_at->format('M d Y') }}</b></span></div>
 
       <a href="{{ route('news.show', ['slug' => $news->slug]) }}">
         <h2 class="subtitle">{{ $news->title }}</h2>

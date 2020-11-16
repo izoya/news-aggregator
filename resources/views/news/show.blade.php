@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                         @else
-                            <p>We sought everywhere but didn't found the news you're looking for :\</p>
+                            <p>{{ __('pages.news.showNewsNotFound') }}</p>
                         @endif
                     </article>
                     {{-- comment section here --}}
@@ -45,6 +45,7 @@
 
                 {{-- sidebar --}}
                 <div class="col-md-12 col-lg-4 col-xs-12 blog-sidebar-column">
+                    @if($news) <x-aside-source :id="$news->source_id"></x-aside-source> @endif
                     <x-aside-categories></x-aside-categories>
                 </div>
                 {{-- sidebar --}}

@@ -4,6 +4,7 @@
     <li><a href="{{ route('category') }}">Categories</a></li>
     <li><a href="{{ route('admin.news.create') }}">Create news</a></li>
     <li><a href="{{ route('order') }}">Extract data</a></li>
-    <li><a href="{{ route('login') }}">Sign up</a></li>
+    {{--Authentication Links--}}
+    @include('includes.auth-links')
 </ul>
 

@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    protected $perPage = 10;
 
     public function index(News $news)
     {
-        $news = News::query()->orderBy('created_at', 'desc')->paginate(10);
+        $news = $news->query()
+            ->where('is_published', '=', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate($this->perPage);
 
         return view('news.index', [
             'news' => $news,
@@ -21,11 +25,12 @@ class NewsController extends Controller
 
     public function show(string $slug)
     {
-        $news = News::query()->where('slug', '=', $slug)->first();
+        $news = News::query()
+            ->where('slug', '=', $slug)
+            ->where('is_published', '=', 1)
+            ->first();
 
-        if (!$news) {
-            return abort(404);
-        }
+        // Empty $news is processed in the template
 
         return view('news.show')
             ->with('news', $news);

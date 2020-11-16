@@ -8,7 +8,7 @@
     <x-title title="Data extraction request"></x-title>
 
     <form class="shake" role="form" method="post" id="userForm" name="order-form"
-          data-toggle="validator" novalidate="true">
+          data-toggle="validator" novalidate="true" action="/order">
       @csrf
       <div class="form-group label-floating is-empty">
         <label class="control-label" for="name">Name</label>
@@ -50,13 +50,3 @@
     </form>
   </div>
 @endsection
-
-@push('js')
-  <script lang="javascript">
-
-    function getFormAction() {
-      return "{{ route('order.store') }}"
-    }
-
-  </script>
-@endpush

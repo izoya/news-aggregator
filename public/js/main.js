@@ -13,7 +13,7 @@
     $('.navbar-form').fadeIn(300);
     $('.navbar-form input').focus();
 	  });
-	$('.navbar-form input').blur(function() {
+	  $('.navbar-form input').blur(function() {
 	    $('.navbar-form').fadeOut(300);
 	 });
 

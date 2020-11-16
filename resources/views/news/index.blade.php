@@ -17,7 +17,7 @@
                             @forelse($news as $n)
                                 <x-card :news="$n"/>
                             @empty
-                                <p>Oops, seems like there's no news in there...</p>
+                                <p>{{ __('pages.news.emptyNewsList') }}</p>
                             @endforelse
                         </div>
 

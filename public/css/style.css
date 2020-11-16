@@ -1447,7 +1447,7 @@ figure:hover figcaption {
 .blog-sidebar-column .author-widget .author-info .author-intro {
   position: absolute;
   float: right;
-  right: 80px;
+  right: 110px;
   top: 106px
 }
 
@@ -1460,7 +1460,6 @@ figure:hover figcaption {
 .blog-sidebar-column .author-widget .author-info .author-image {
   position: absolute;
   top: 92px;
-  left: 50px
 }
 
 .blog-sidebar-column .author-widget .author-info .author-bio {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -22,20 +23,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
+Route::name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', DashboardController::class)->name('dashboard');
+    Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
+    Route::resource('order', \App\Http\Controllers\Admin\OrderController::class);
+});
 
-Route::prefix('admin')->group(function () {
-    Route::resource('news', \App\Http\Controllers\Admin\NewsController::class)
-        ->names([
-            'index' => 'admin.news',
-            'create' => 'admin.news.create',
-            'store' => 'admin.news.store',
-        ]);
-    });
-
-
-Route::get('/cat', [CategoryController::class, 'index'])
-    ->name('category');
-
+Route::get('/cat', [CategoryController::class, 'index'])->name('category');
 
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news');
@@ -46,21 +41,10 @@ Route::prefix('news')->group(function () {
         ->name('news.show');
     });
 
+Route::resource('feedback', FeedbackController::class)->name('index', 'feedback');
 
-Route::resource('feedback', FeedbackController::class)
-    ->names([
-        'index'  => 'feedback',
-        'create' => 'feedback.create',
-        'store'  => 'feedback.store',
-        ]);
+Route::resource('order', OrderController::class)->name('index', 'order');
 
 
-Route::resource('order', OrderController::class)
-    ->name('create', 'order');
-
-
-Route::get('/auth', [AuthController::class, 'index'])
-    ->name('auth');
-
-
+Route::get('/auth', [AuthController::class, 'index'])->name('auth');
 Auth::routes();

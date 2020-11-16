@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewsStore;
 use App\Models\Category;
 use App\Models\News;
-use File;
+use App\Models\Source;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Storage;
 use Str;
 
 class NewsController extends Controller
 {
+    protected $perPage = 10;
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +24,11 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return response()->view('admin.news.index');
-        // return response()->json(News::getNews());
+        $news = News::query()->orderBy('updated_at', 'desc')->paginate($this->perPage);
+
+        return response()->view('admin.news.index', [
+            'news' => $news,
+        ]);
     }
 
     /**
@@ -32,10 +37,12 @@ class NewsController extends Controller
      * @param Category $category
      * @return Response
      */
-    public function create(Category $category)
+    public function create()
     {
         return response()->view('admin.news.create', [
-            'categories' => $category->all(),
+            'news' => null,
+            'categories' => Category::all(),
+            'sources' => Source::all(),
         ]);
     }
 
@@ -46,28 +53,26 @@ class NewsController extends Controller
      * @return Response | RedirectResponse
      * @throws FileNotFoundException
      */
-    public function store(Request $request)
+    public function store(NewsStore $request, News $news)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'content' => 'required',
-            'category_id' => 'required',
-        ]);
-
-        $data = $request->only(['title', 'description']);
-        $news = new News();
+        dump($news);
+        $data = $request->validated();
         $news->slug = Str::slug($data['title']);
         $news->image = null;
-        $result = $news->fill($data)->save();
 
-        if(!$result) {
+        try {
+            $news->fill($data)->save();
+
+        } catch (QueryException $e) {
+
+            $request->flash();
+
             return redirect()->back()
-                ->with('error', __('alerts.error.addNews'));
+                ->with('error', __('sessions.error.dbError', ['code' => $e->errorInfo[1]]));
         }
 
         return redirect()->route('news.show', ['slug' => $news->slug])
-            ->with('success', __('alerts.success.addNews'));
+            ->with('success', __('sessions.success.addNews'));
     }
 
     /**
@@ -89,7 +94,12 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        return response()->view('admin.news.create', [
+            'news' => $news,
+            'categories' => Category::all(),
+            'sources' => Source::all(),
+        ]);
+
     }
 
     /**
@@ -97,21 +107,47 @@ class NewsController extends Controller
      *
      * @param Request $request
      * @param News $news
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, News $news)
+    public function update(NewsStore $request, News $news)
     {
-        //
+        $data = $request->validated();
+        $news->slug = Str::slug($data['title']);
+        $news->image = null;
+
+        try {
+            $news->fill($data)->save();
+
+        } catch (QueryException $e) {
+
+            $request->flash();
+
+            return redirect()->back()
+                ->with('error', __('sessions.error.dbError', ['code' => $e->errorInfo[2]]));
+        }
+
+        return redirect()->route('admin.news')
+            ->with('success', __('sessions.success.updateNews'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param News $news
-     * @return Response
+     * @return RedirectResponse
      */
     public function destroy(News $news)
     {
-        //
+        try {
+            $news->delete();
+
+        } catch (QueryException $e) {
+
+            return redirect()->back()
+                ->with('error', __('sessions.error.dbError', ['code' => $e->errorInfo[1]]));
+        }
+
+        return redirect()->route('admin.news')
+            ->with('success', __('sessions.success.deleteNews'));
     }
 }

@@ -16,17 +16,18 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return $this->create();
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return Response
      */
     public function create()
     {
-      return response()->view('order.create');
+        return response()->view('order.create');
     }
 
     /**
@@ -37,28 +38,28 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-      $request->validate([
-        'name' => 'required',
-        'email' => 'required',
-        'phone' => 'required',
-        'request' => 'required',
-      ]);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'request' => 'required',
+        ]);
 
-      $data = $request->except(['_token']);
+        $data = $request->except(['_token']);
 
-      $order = new Order();
-      $result = $order->fill($data)->save();
+        $order = new Order();
+        $result = $order->fill($data)->save();
 
-      if (!$result) return response('error', 501);
+        if (!$result) return response('error', 501);
 
-      return response('success', 200);
-      // return \response()->json(['created' => true]);
+        return response('success', 200);
+        // return \response()->json(['created' => true]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -69,7 +70,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -81,7 +82,7 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -92,7 +93,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)

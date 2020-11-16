@@ -16,7 +16,7 @@ class CreateNewsCategoriesTable extends Migration
         Schema::create('news_categories', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('news_id');
-
+            $table->primary(['category_id', 'news_id']);
             $table->foreign('category_id')->on('categories')->references('id')
                 ->restrictOnDelete();
             $table->foreign('news_id')->on('news')->references('id')

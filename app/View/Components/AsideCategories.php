@@ -17,7 +17,7 @@ class AsideCategories extends Component
      */
     public function __construct(Category $category)
     {
-        $this->categories = $category->all();
+        $this->categories = $category->allWithCount();
     }
 
     /**

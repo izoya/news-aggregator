@@ -27,7 +27,7 @@
               -webkit-animation-delay: .5s; -moz-animation-delay: .5s; animation-delay: .5s;">
     <h2 class="subtitle">Contact Form</h2>
     <form class="shake" role="form" method="post" id="userForm" name="contact-form"
-          data-toggle="validator" novalidate="true">
+          data-toggle="validator" novalidate="true" action="/feedback">
       @csrf
       <div class="form-group label-floating is-empty">
         <label class="control-label" for="name">Name</label>
@@ -70,12 +70,3 @@
 
 @endsection
 
-@push('js')
-<script lang="javascript">
-
-function getFormAction() {
-  return "{{ route('feedback.store') }}"
-}
-
-</script>
-@endpush
