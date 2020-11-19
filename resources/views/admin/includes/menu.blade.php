@@ -12,6 +12,9 @@
             <a class="dropdown-item" href="{{ route('admin.news.create') }}">Add news</a>
         </div>
     </li>
+    <li class="nav-item {{ request()->routeIs('admin.user.index')?'active':'' }}">
+        <a class="nav-link" href="{{ route('admin.user.index') }}">Users</a>
+    </li>
     <li class="nav-item {{ request()->routeIs('admin.category.index')?'active':'' }}">
         <a class="nav-link" href="{{ route('admin.category.index') }}">Categories</a>
     </li>

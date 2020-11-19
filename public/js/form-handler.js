@@ -58,5 +58,5 @@ function submitMSG(valid, msg) {
 }
 
 function getConfirm() {
-    return confirm("Do you really want to delete the news?");
+    return confirm("Do you really want to delete this?");
 }

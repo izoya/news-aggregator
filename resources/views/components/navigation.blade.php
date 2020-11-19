@@ -13,7 +13,7 @@
             @include('includes.menu')
             {{-- Search Box here --}}
 
-                <ul class="navbar-nav">
+                <ul class="navbar-nav border-left ml-2 pl-2">
                     <!-- Authentication Links -->
                     @include('includes.auth-links')
                 </ul>

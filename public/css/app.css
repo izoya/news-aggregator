@@ -1,6 +1,9 @@
 .bb {
     border: 1px solid darkred;
 }
+.tr {
+    color: fuchsia;
+}
 
 .text-bold {
     font-weight: 600;

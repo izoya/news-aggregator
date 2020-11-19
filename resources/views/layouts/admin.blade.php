@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}" >
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+    <style>
+        .admin-login-text {
+            color:#f8f9fa!important
+        }
+    </style>
 </head>
 <body>
     <div id="app" style="min-height: 90vh;">

@@ -51,15 +51,69 @@
                 <div class="card-header text-uppercase">Users</div>
                 <div class="card-body">
                     <div class="d-flex flex-column">
-                        <div class="row">
-                            <div class="col-2">Status</div>
-                            <div class="col-4">Name</div>
-                            <div class="col-3">E-mail</div>
-                        </div>
+                        @forelse($users as $user)
+                            <div class="row mb-n2">
+                                {{-- status --}}
+                                <div class="col-1 pl-0">
+                                    <i class="mdi
+                                    @if($user->is_admin) mdi-account-key  text-danger
+                                    @else mdi-account text-warning
+                                    @endif text-secondary"></i>
+                                </div>
+                                {{-- name --}}
+                                <div class="col-3 text-truncate">
+                                    <a href="{{ route('admin.user.edit', $user) }}" class="text-reset text-bold">
+                                        {{ $user->name }}</a>
+                                </div>
+                                {{-- e-mail --}}
+                                <div class="col-5 text-truncate">
+                                    <p>{{ $user->email }}</p>
+                                </div>
+                                {{-- buttons --}}
+                                <div class="col-3 text-right text-secondary">
+                                    <a class="text-reset hover-info" href="{{ route('admin.user.edit', $user) }}">
+                                        <i class="mdi mdi-pencil"></i></a>
 
+                                    <form method="post" action="{{ route('admin.user.destroy', $user ) }}"
+                                          class="d-inline" onsubmit="getConfirm()">
+                                        @csrf @method('DELETE')
+                                        <button class="btn btn-link text-secondary hover-danger p-0 pb-1">
+                                            <i class="mdi mdi-delete"></i></button>
+                                    </form>
 
-
+                                    <a class="" href="#">
+                                    </a>
+                                </div>
+                            </div>
+                        @empty
+                            <p>{{ __('pages.admin.emptyUsersList') }}</p>
+                        @endforelse
                     </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ route('admin.user.index') }}">See all <i class="mdi-arrow"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col mb-4">
+            <div class="card">
+                <div class="card-header  text-uppercase">CATEGORIES</div>
+                <div class="card-body">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to content.</p>
+                </div>
+                <div class="card-footer">Footer</div>
+            </div>
+        </div>
+
+        <div class="col mb-4">
+            <div class="card">
+                <div class="card-header  text-uppercase">ORDERS</div>
+                <div class="card-body">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to content.</p>
                 </div>
                 <div class="card-footer">Footer</div>
             </div>

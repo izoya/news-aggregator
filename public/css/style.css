@@ -443,17 +443,11 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 .dropdown .dropdown-menu .dropdown-item {
-  width: 100%;
-  padding: 10px 20px;
   font-size: 13px;
-  color: #202020;
   text-decoration: none;
-  display: inline-block;
   float: left;
-  clear: both;
   position: relative;
   outline: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.03);
   transition: 0.3s all ease-in-out;
   -webkit-transition: 0.3s all ease-in-out;
   -moz-transition: 0.3s all ease-in-out;

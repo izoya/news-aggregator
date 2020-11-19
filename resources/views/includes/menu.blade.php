@@ -11,8 +11,10 @@
     <li class="nav-item {{ request()->routeIs('order')?'active':'' }}">
         <a class="nav-link" href="{{ route('order') }}">Extract data</a>
     </li>
+    @if(Auth::check() && Auth::user()->is_admin)
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="mdi mdi-lock"></i>Admin</a>
     </li>
+    @endif
 </ul>

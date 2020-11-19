@@ -23,7 +23,7 @@
             {{-- blog column --}}
 
             {{-- sidebar --}}
-            <div class="col-md-12 col-lg-3 col-xs-12 blog-sidebar-column">
+            <div class="col-md-12 col-3 mb-5">
 
                 <a href="{{ route('admin.news.create' ) }}" class="btn btn-primary w-100">
                     {{ __('elements.button.addNews') }}</a>
