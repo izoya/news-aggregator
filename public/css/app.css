@@ -9,3 +9,23 @@
 .pointer {
     cursor: pointer;
 }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 90%;
+    transition: 0.5s all ease-in-out;
+    -webkit-transition: 0.3s all ease-in-out;
+    -moz-transition: 0.3s all ease-in-out;
+    -o-transition: 0.3s all ease-in-out;
+    -ms-transition: 0.3s all ease-in-out;
+    animation: 0.4s ease 0s normal none 1 running fadeInUpMenu;
+}
+
+.hover-danger:hover, .hover-danger:focus {
+    color: #dc3545!important;
+}
+.hover-info:hover, .hover-info:focus {
+    color: #17a2b8!important;
+}
+

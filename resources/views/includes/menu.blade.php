@@ -8,10 +8,11 @@
     <li class="nav-item {{ request()->routeIs('category')?'active':'' }}">
         <a class="nav-link" href="{{ route('category') }}">Categories</a>
     </li>
-    <li class="nav-item {{ request()->routeIs('admin.news.create')?'active':'' }}">
-        <a class="nav-link" href="{{ route('admin.news.create') }}">Create news</a>
-    </li>
     <li class="nav-item {{ request()->routeIs('order')?'active':'' }}">
         <a class="nav-link" href="{{ route('order') }}">Extract data</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <i class="mdi mdi-lock"></i>Admin</a>
     </li>
 </ul>

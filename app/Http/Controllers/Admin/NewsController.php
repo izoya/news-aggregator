@@ -39,7 +39,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return response()->view('admin.news.create', [
+        return response()->view('admin.news.form', [
             'news' => null,
             'categories' => Category::all(),
             'sources' => Source::all(),
@@ -94,7 +94,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        return response()->view('admin.news.create', [
+        return response()->view('admin.news.form', [
             'news' => $news,
             'categories' => Category::all(),
             'sources' => Source::all(),
@@ -126,7 +126,7 @@ class NewsController extends Controller
                 ->with('error', __('sessions.error.dbError', ['code' => $e->errorInfo[2]]));
         }
 
-        return redirect()->route('admin.news')
+        return redirect()->route('admin.news.index')
             ->with('success', __('sessions.success.updateNews'));
     }
 
@@ -147,7 +147,7 @@ class NewsController extends Controller
                 ->with('error', __('sessions.error.dbError', ['code' => $e->errorInfo[1]]));
         }
 
-        return redirect()->route('admin.news')
+        return redirect()->back()
             ->with('success', __('sessions.success.deleteNews'));
     }
 }

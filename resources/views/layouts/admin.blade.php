@@ -7,9 +7,11 @@
     <title>{{ config('app.name', 'Admin') }}</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}" >
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 </head>
 <body>
     <div id="app" style="min-height: 90vh;">
@@ -58,6 +60,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/form-validator.min.js') }}"></script>
     <script src="{{ asset('js/form-handler.js') }}"></script>
+    <script src="{{ asset('js/material.min.js') }}"></script>
 
 </body>
 </html>

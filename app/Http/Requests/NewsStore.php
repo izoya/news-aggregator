@@ -24,7 +24,7 @@ class NewsStore extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:5|max:150',
+            'title' => 'required|string|min:5|max:100',
             'image' => 'file|mimes:gif,jpeg,jpg,png|max:500',
             'description' => 'required|string|min:50|max:255',
             'content' => 'required|string|min:150',

@@ -33,6 +33,7 @@
 
 <main id="app" class="container my-5">
 
+
     {{-- Alert --}}
     @include('includes.alert')
 

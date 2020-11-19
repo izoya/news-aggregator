@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar nav-bg">
+    <nav class="navbar navbar-expand-md fixed-top scrolling-navbar nav-bg">
         <div class="container">
 
             <div class="navbar-header">
