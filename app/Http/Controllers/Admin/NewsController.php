@@ -49,19 +49,19 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param NewsStore $request
+     * @param News $news
      * @return Response | RedirectResponse
-     * @throws FileNotFoundException
      */
     public function store(NewsStore $request, News $news)
     {
-        dump($news);
         $data = $request->validated();
         $news->slug = Str::slug($data['title']);
         $news->image = null;
 
         try {
             $news->fill($data)->save();
+            // TODO $news->categories()->attach([ids...]);
 
         } catch (QueryException $e) {
 
@@ -117,6 +117,10 @@ class NewsController extends Controller
 
         try {
             $news->fill($data)->save();
+            // TODO $news->categories()->sync([ids...]);
+
+
+
 
         } catch (QueryException $e) {
 
@@ -140,6 +144,7 @@ class NewsController extends Controller
     {
         try {
             $news->delete();
+            /* news_categories detach performed via DB foreign-key constraint */
 
         } catch (QueryException $e) {
 

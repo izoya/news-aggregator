@@ -13,7 +13,7 @@
 
     namespace Illuminate\Support\Facades {
 
-        use App\Console\Kernel;
+        use use App\Console\Kernel;
         use App\Models\User;
         use BadMethodCallException;
         use Closure;
@@ -53,8 +53,7 @@
         use Illuminate\Contracts\Cache\Lock;
         use Illuminate\Contracts\Container\BindingResolutionException;
         use Illuminate\Contracts\Container\Container;
-        use Illuminate\Contracts\Container\ContextualBindingBuilder;
-        use Illuminate\Contracts\Cookie\QueueingFactory;
+        use Illuminate\Contracts\Container\ContextualBindingBuilder;use Illuminate\Contracts\Cookie\QueueingFactory;
         use Illuminate\Contracts\Encryption\DecryptException;
         use Illuminate\Contracts\Encryption\EncryptException;
         use Illuminate\Contracts\Events\Dispatcher;
@@ -115,8 +114,7 @@
         use Illuminate\Session\Store;
         use Illuminate\Support\Collection;
         use Illuminate\Support\LazyCollection;
-        use Illuminate\Support\ServiceProvider;
-        use Illuminate\Support\Testing\Fakes\BusFake;
+        use Illuminate\Support\ServiceProvider;use Illuminate\Support\Testing\Fakes\BusFake;
         use Illuminate\Support\Testing\Fakes\EventFake;
         use Illuminate\Support\Testing\Fakes\MailFake;
         use Illuminate\Support\Testing\Fakes\NotificationFake;
@@ -148,9 +146,7 @@
         use Symfony\Component\HttpFoundation\BinaryFileResponse;
         use Symfony\Component\HttpFoundation\ParameterBag;
         use Symfony\Component\HttpFoundation\StreamedResponse;
-        use Symfony\Component\HttpKernel\Exception\HttpException;
-        use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-        use Symfony\Component\Routing\Exception\RouteNotFoundException;
+        use Symfony\Component\HttpKernel\Exception\HttpException;use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;use Symfony\Component\Routing\Exception\RouteNotFoundException;
         use Throwable;
 
         /**
@@ -14568,19 +14564,84 @@
 
 }
 
-        namespace Barryvdh\Debugbar {
-
-            use Closure;
-            use DebugBar\DataCollectorInterface;
-            use DebugBar\HttpDriverInterface;
-            use DebugBar\RequestIdGeneratorInterface;
-            use DebugBar\StorageInterface;
-            use ErrorException;
-            use Exception;
-            use Symfony\Component\HttpFoundation\Request;
-            use Symfony\Component\HttpFoundation\Response;
-
+        namespace Orchestra\Parser\Xml {
             /**
+     *
+     *
+     * @see \Orchestra\Parser\Xml\Reader
+     */
+        class Facade {
+                    /**
+         * Provides SimpleXMLElement to document.
+         *
+         * @return \Laravie\Parser\Document
+         * @static
+         */
+        public static function via($xml)
+        {
+                        /** @var Reader $instance */
+                        return $instance->via($xml);
+        }
+                    /**
+         * Extract content from string.
+         *
+         * @param string $content
+         * @return \Laravie\Parser\Document
+         * @static
+         */
+        public static function extract($content)
+        {            //Method inherited from \Laravie\Parser\Xml\Reader
+                        /** @var Reader $instance */
+                        return $instance->extract($content);
+        }
+                    /**
+         * Load content from file.
+         *
+         * @param string $filename
+         * @return \Laravie\Parser\Document
+         * @static
+         */
+        public static function load($filename)
+        {            //Method inherited from \Laravie\Parser\Xml\Reader
+                        /** @var Reader $instance */
+                        return $instance->load($filename);
+        }
+                    /**
+         * Load content from local file.
+         *
+         * @param string $filename
+         * @return \Laravie\Parser\Document
+         * @static
+         */
+        public static function local($filename)
+        {            //Method inherited from \Laravie\Parser\Xml\Reader
+                        /** @var Reader $instance */
+                        return $instance->local($filename);
+        }
+                    /**
+         * Load content from remote file.
+         *
+         * @param string $filename
+         * @return \Laravie\Parser\Document
+         * @static
+         */
+        public static function remote($filename)
+        {            //Method inherited from \Laravie\Parser\Xml\Reader
+                        /** @var Reader $instance */
+                        return $instance->remote($filename);
+        }
+
+    }
+
+}
+
+    namespace Barryvdh\Debugbar {
+
+        use use Closure;use DebugBar\DataCollectorInterface;use DebugBar\HttpDriverInterface;
+        use DebugBar\RequestIdGeneratorInterface;
+        use DebugBar\StorageInterface;use ErrorException;use Exception;use Symfony\Component\HttpFoundation\Request;use Symfony\Component\HttpFoundation\Response;
+
+        /**
      *
      *
      * @method static void alert(mixed $message)
@@ -15351,6 +15412,110 @@
         {
                         /** @var \Facade\FlareClient\Flare $instance */
                         return $instance->group($groupName, $properties);
+        }
+
+    }
+
+}
+
+    namespace Laravel\Socialite\Facades {
+
+        use Closure;
+        use InvalidArgumentException;
+        use Laravel\Socialite\SocialiteManager;
+        use Laravel\Socialite\Two\AbstractProvider;
+
+        /**
+     *
+     *
+     * @see \Laravel\Socialite\SocialiteManager
+     */
+        class Socialite {
+                    /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed
+         * @static
+         */
+        public static function with($driver)
+        {
+                        /** @var SocialiteManager $instance */
+                        return $instance->with($driver);
+        }
+                    /**
+         * Build an OAuth 2 provider instance.
+         *
+         * @param string $provider
+         * @param array $config
+         * @return AbstractProvider
+         * @static
+         */
+        public static function buildProvider($provider, $config)
+        {
+                        /** @var SocialiteManager $instance */
+                        return $instance->buildProvider($provider, $config);
+        }
+                    /**
+         * Format the server configuration.
+         *
+         * @param array $config
+         * @return array
+         * @static
+         */
+        public static function formatConfig($config)
+        {
+                        /** @var SocialiteManager $instance */
+                        return $instance->formatConfig($config);
+        }
+                    /**
+         * Get the default driver name.
+         *
+         * @return string
+         * @throws InvalidArgumentException
+         * @static
+         */
+        public static function getDefaultDriver()
+        {
+                        /** @var SocialiteManager $instance */
+                        return $instance->getDefaultDriver();
+        }
+                    /**
+         * Get a driver instance.
+         *
+         * @param string|null $driver
+         * @return mixed
+         * @throws InvalidArgumentException
+         * @static
+         */
+        public static function driver($driver = null)
+        {            //Method inherited from \Illuminate\Support\Manager
+                        /** @var SocialiteManager $instance */
+                        return $instance->driver($driver);
+        }
+                    /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param Closure $callback
+         * @return SocialiteManager
+         * @static
+         */
+        public static function extend($driver, $callback)
+        {            //Method inherited from \Illuminate\Support\Manager
+                        /** @var SocialiteManager $instance */
+                        return $instance->extend($driver, $callback);
+        }
+                    /**
+         * Get all of the created "drivers".
+         *
+         * @return array
+         * @static
+         */
+        public static function getDrivers()
+        {            //Method inherited from \Illuminate\Support\Manager
+                        /** @var SocialiteManager $instance */
+                        return $instance->getDrivers();
         }
 
     }
@@ -18503,11 +18668,37 @@ namespace  {
             class URL extends \Illuminate\Support\Facades\URL {}
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
+            class XmlParser extends \Orchestra\Parser\Xml\Facade {}
             class Debugbar extends Facade {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
+            class Socialite extends \Laravel\Socialite\Facades\Socialite {}
 
 }
 
 
 
+namespace Illuminate\Support {
+    /**
+     * Methods commonly used in migrations
+     *
+     * @method Fluent after(string $column) Add the after modifier
+     * @method Fluent charset(string $charset) Add the character set modifier
+     * @method Fluent collation(string $collation) Add the collation modifier
+     * @method Fluent comment(string $comment) Add comment
+     * @method Fluent default($value) Add the default modifier
+     * @method Fluent first() Select first row
+     * @method Fluent index(string $name = null) Add the in dex clause
+     * @method Fluent on(string $table) `on` of a foreign key
+     * @method Fluent onDelete(string $action) `on delete` of a foreign key
+     * @method Fluent onUpdate(string $action) `on update` of a foreign key
+     * @method Fluent primary() Add the primary key modifier
+     * @method Fluent references(string $column) `references` of a foreign key
+     * @method Fluent nullable(bool $value = true) Add the nullable modifier
+     * @method Fluent unique(string $name = null) Add unique index clause
+     * @method Fluent unsigned() Add the unsigned modifier
+     * @method Fluent useCurrent() Add the default timestamp value
+     * @method Fluent change() Add the change modifier
+     */
+    class Fluent {}
+}
 

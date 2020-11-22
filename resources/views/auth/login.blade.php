@@ -50,7 +50,15 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="form-group row mb-0">
+                            <div class="col-md-4 text-md-right login-label">{{ __('Login with') }}</div>
+                            <div class="col-md-6">
+                                <a href="{{ route('login.oauth', 'vkontakte') }}" style="color:#2a5885">
+                                    <i class="mdi mdi-vk mdi-36px"></i></a>
+                                <a href="{{ route('login.oauth', 'facebook') }}" style="color:#1877F2">
+                                    <i class="mdi mdi-facebook mdi-36px"></i></a>
+                            </div>
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

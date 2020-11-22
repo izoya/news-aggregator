@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdate;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
@@ -58,7 +59,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $user = User::find($user->id);
+
+        return response()->view('admin.user.show', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -95,8 +100,11 @@ class UserController extends Controller
 
         if (empty($data['is_admin'])) $data['is_admin'] = 0;
 
+        $user->fill($data);
+        $user->updated_at = Carbon::now();
+
         try {
-            $user->fill($data)->save();
+            $user->save();
 
         } catch (QueryException $e) {
             $request->flash();
@@ -104,7 +112,7 @@ class UserController extends Controller
                 ->with('error', __('sessions.error.dbError', ['code' => $e->errorInfo[1]]));
         }
 
-        return redirect()->route('admin.user.index')
+        return redirect()->route('admin.user.show', ['user' => $user])
             ->with('success', __('sessions.success.updateUser'));
     }
 
@@ -117,6 +125,7 @@ class UserController extends Controller
         }
 
         $user->is_admin = !(boolean)$user->is_admin;
+        $user->updated_at = Carbon::now();
 
         try {
             $user->save();

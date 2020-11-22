@@ -2,8 +2,9 @@
 return [
     'button' => [
         'addNews' => 'Add news',
-        'editNews' => 'Edit',
-        'deleteNews' => 'Delete',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
+        'showAllUsers' => 'Show all users'
 
     ],
 ];

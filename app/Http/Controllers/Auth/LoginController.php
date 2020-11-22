@@ -43,9 +43,6 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        $user->last_login_at = Carbon::now();
-        $user->save();
-
         if ($user->is_admin) {
             return redirect(RouteServiceProvider::ADMINPANEL);
         }

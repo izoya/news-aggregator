@@ -53,16 +53,14 @@
                     <div class="d-flex flex-column">
                         @forelse($users as $user)
                             <div class="row mb-n2">
-                                {{-- status --}}
-                                <div class="col-1 pl-0">
+                                {{-- status --}}{{-- name --}}
+                                <div class="col-5 pl-0 text-truncate">
                                     <i class="mdi
                                     @if($user->is_admin) mdi-account-key  text-danger
                                     @else mdi-account text-warning
-                                    @endif text-secondary"></i>
-                                </div>
-                                {{-- name --}}
-                                <div class="col-3 text-truncate">
-                                    <a href="{{ route('admin.user.edit', $user) }}" class="text-reset text-bold">
+                                    @endif text-secondary pr-2"></i>
+
+                                    <a href="{{ route('admin.user.show', $user) }}" class="text-reset text-bold">
                                         {{ $user->name }}</a>
                                 </div>
                                 {{-- e-mail --}}
@@ -70,7 +68,7 @@
                                     <p>{{ $user->email }}</p>
                                 </div>
                                 {{-- buttons --}}
-                                <div class="col-3 text-right text-secondary">
+                                <div class="col-2 text-right text-secondary">
                                     <a class="text-reset hover-info" href="{{ route('admin.user.edit', $user) }}">
                                         <i class="mdi mdi-pencil"></i></a>
 

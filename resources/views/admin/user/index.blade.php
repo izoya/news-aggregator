@@ -20,7 +20,7 @@
                                             @if($user->is_admin) mdi-account-key  text-danger
                                             @else mdi-account text-warning
                                             @endif text-secondary"></i>
-                                        <a href="{{ route('admin.user.edit', $user) }}"
+                                        <a href="{{ route('admin.user.show', $user) }}"
                                            class="text-reset text-bold pl-3">{{ $user->name }}</a>
                                     </div>
                                     {{-- e-mail --}}

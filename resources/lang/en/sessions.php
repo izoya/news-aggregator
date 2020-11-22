@@ -6,11 +6,12 @@ return [
         'adminDestroy' => 'You cannot delete your own admin profile.',
     ],
     'success' => [
-        'addNews' => 'The news have been successfully added.',
-        'updateNews' => 'The news have been successfully updated.',
-        'deleteNews' => 'The news have been deleted.',
-        'updateStatus' => 'User\'s status was changed.',
-        'updateUser' => 'User profile have been successfully updated.',
-        'deleteUser' => 'User profile have been deleted.',
+        'addNews' => 'The news has been successfully added.',
+        'updateNews' => 'The news has been successfully updated.',
+        'deleteNews' => 'The news has been deleted.',
+        'parsedNews' => ':count source(s) have been parsed.',
+        'updateStatus' => 'User status has been changed.',
+        'updateUser' => 'User profile has been successfully updated.',
+        'deleteUser' => 'User profile has been deleted.',
     ],
 ];

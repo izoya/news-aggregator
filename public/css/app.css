@@ -31,4 +31,7 @@
 .hover-info:hover, .hover-info:focus {
     color: #17a2b8!important;
 }
-
+.login-label {
+    color:#BDBDBD;
+    font-size: 16px;
+}
