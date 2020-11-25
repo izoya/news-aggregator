@@ -25,7 +25,7 @@ class NewsStore extends FormRequest
     {
         return [
             'title' => 'required|string|min:5|max:100',
-            'image' => 'file|mimes:gif,jpeg,jpg,png|max:500',
+            'image' => 'sometimes|file|mimes:gif,jpeg,jpg,png|max:500',
             'description' => 'required|string|min:50|max:255',
             'content' => 'required|string|min:150',
             'source_id' => 'required|integer|exists:App\Models\Source,id',

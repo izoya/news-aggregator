@@ -34,7 +34,7 @@
                                             @csrf @method('PUT')
                                             <input type="hidden" name="is_admin" value="{{ (int)$user->is_admin }}">
                                             <button class="btn btn-warning mr-2">
-                                              {{ __('pages.admin.changeStatus') }}</button>
+                                              {{ __('elements.button.toggleStatus') }}</button>
                                         </form>
 
                                         <a class="text-reset hover-info" href="{{ route('admin.user.edit', $user) }}">

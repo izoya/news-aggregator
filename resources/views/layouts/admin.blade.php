@@ -48,11 +48,11 @@
 
         <main class="container my-5">
 
-            {{-- Alert --}}
-            @include('includes.alert')
+        {{-- Alert --}}
+        @include('includes.alert')
 
-          {{-- Content --}}
-          @yield('content')
+        {{-- Content --}}
+        @yield('content')
 
         </main>
 

@@ -18,7 +18,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                            class="form-control @error('name') is-invalid @enderror"
-                                           name="name" value="{{ old('name') ?? $user->name ?? '' }}"
+                                           name="name" value="{{ old('name', optional($user)->name) }}"
                                            required autocomplete="name" autofocus>
 
                                     @error('name')
@@ -35,7 +35,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                            class="form-control @error('email') is-invalid @enderror"
-                                           name="email" value="{{ old('email') ?? $user->email ?? '' }}" required
+                                           name="email" value="{{ old('email', optional($user)->email) }}" required
                                            autocomplete="email">
 
                                     @error('email')
@@ -52,7 +52,8 @@
                                 <div class="col-md-6">
                                     <input id="is_admin" type="checkbox"
                                            class="form-check-input ml-1 mt-3" name="is_admin"
-                                           @if(old('is_admin') || $user->is_admin) checked @endif value="1">
+                                           @if(old('is_admin', optional($user)->is_admin)) checked
+                                           @endif value="1">
                                 </div>
                                 @error('is_admin') {{ $message }} @enderror
                             </div>

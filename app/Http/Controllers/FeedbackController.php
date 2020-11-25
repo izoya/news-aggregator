@@ -47,7 +47,9 @@ class FeedbackController extends Controller
         $feedback = new Feedback();
         $result = $feedback->fill($data)->save();
 
-        if (!$result) return response('error', 501);
+        if (!$result) {
+            return response('error', 501);
+        }
 
         return response('success', 200);
     }

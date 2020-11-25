@@ -9,9 +9,6 @@ return [
     'admin' => [
         'createNews' => 'Create news',
         'editNews' => 'Edit news #:id',
-        'addButton' => 'Create',
-        'editButton' => 'Save changes',
-        'changeStatus' => 'Toogle status',
         'emptyUsersList' => 'No users found.',
     ],
 ];

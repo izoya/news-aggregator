@@ -1,6 +1,7 @@
 <?php
 return [
     'error' => [
+        'error' => 'Error occurred.',
         'dbError' => 'Error occurred. Code: :code',
         'adminStatus' => 'You cannot change your own status.',
         'adminDestroy' => 'You cannot delete your own admin profile.',

@@ -97,17 +97,6 @@ a a:focus {
   height: 2px;
   background-color: #2196F3
 }
-
-.subtitle {
-  font-size: 20px;
-  letter-spacing: 0.5px;
-  margin-top: 20px;
-  line-height: 26px;
-  font-weight: 400;
-  text-transform: capitalize;
-  margin-bottom: 10px
-}
-
 .inner-title {
   font-size: 24px;
   font-weight: 900;

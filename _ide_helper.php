@@ -13,7 +13,7 @@
 
     namespace Illuminate\Support\Facades {
 
-        use use App\Console\Kernel;
+        use App\Console\Kernel;
         use App\Models\User;
         use BadMethodCallException;
         use Closure;

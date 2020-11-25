@@ -15,7 +15,7 @@ class SocialiteController extends Controller
 
     public function redirectToProvider(string $provider)
     {
-        if (Auth::check()) {
+
             return redirect('login');
         }
 

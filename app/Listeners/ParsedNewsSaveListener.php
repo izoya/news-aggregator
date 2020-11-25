@@ -9,6 +9,7 @@ use App\Models\Source;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\QueryException;
 use Illuminate\Queue\InteractsWithQueue;
+use Log;
 use Str;
 
 class ParsedNewsSaveListener
@@ -31,84 +32,48 @@ class ParsedNewsSaveListener
      */
     public function handle(ParseNewsEvent $event)
     {
-//        foreach ($event->data as $data) {
-//            TODO insert code from below here
-//        }
+        foreach ($event->data as $data) {
 
-        $data = $event->data[0];  //temp
+            $source = Source::query()->firstOrCreate([
+                'name'        => $data['title'],
+                'link'        => $data['link'],
+                'description' => $data['description'],
+                'image'       => $data['image'],
+            ]);
 
-        $source = Source::query()->where('name', 'like', $data['title'])->first();
-        if (is_null($source)) {
-            $source = $this->createSource($data);
-        }
+            $category = Category::query()->firstOrCreate([
+                'title'       => $data['category'],
+                'slug'        => Str::slug($data['category']),
+                'description' => $data['description'],
+            ]);
 
-        $category = Category::query()->where('title', 'like', $data['category'])->first();
-        if (is_null($category)) {
-            $category = $this->createCategory($data);
-        }
+            foreach ($data['news'] as $newsData) {
 
-        foreach ($data['news'] as $newsData) {
-            $slug = Str::slug($newsData['title']);
-            $news = News::query()->where('slug', '=', $slug)->firstOrNew();
+                $slug = Str::of($newsData['title'])->slug()->limit(100, '');
 
-            if (empty($news->id)) {
-                $newsData['source_id'] = $source->id;
-                $news = $this->createNews($newsData);
+                if (News::query()->where('slug', $slug)->doesntExist()) {
 
-                if ($news) {
-                    $news->categories()->sync($category->id);
+                    $description = Str::of(strip_tags($newsData['description']))->limit(252);
+                    $title = Str::of($newsData['title'])->limit(97);
+                    $image = $newsData['image'] ?? optional($source)->image;
+
+                    try {
+                        News::query()->create([
+                            'title'       => $title,
+                            'slug'        => $slug,
+                            'image'       => $image,
+                            'description' => $description,
+                            'source_id'   => $source->id,
+                            'created_at'  => $newsData['pubDate'],
+                            'link'        => $newsData['link'],
+                        ])
+                            ->categories()->attach($category->id);
+
+                    } catch (QueryException $e) {
+                        Log::error(__CLASS__ . ' - ' . $e->getMessage());
+                    }
                 }
             }
         }
-    }
-
-    private function createSource(array $data)
-    {
-        $source = new Source();
-        $source->name = $data['title'];
-        $source->link = $data['link'];
-        $source->description = $data['description'];
-        $source->save();
-
-        return $source;
-    }
-
-    private function createCategory(array $data)
-    {
-        $category = new Category();
-        $category->title = $data['category'];
-        $category->slug = Str::slug($data['category']);
-        $category->description = $data['description'];
-        $category->save();
-
-        return $category;
-    }
-
-    /**
-     * @param array $newsData
-     * @return News|false
-     */
-    private function createNews(array $newsData)
-    {
-        $news = new News();
-        $news->title = $newsData['title'];
-        $news->slug = Str::slug($newsData['title']);
-        $news->image = $newsData['image'];
-        $news->description = $newsData['description'];
-        $news->link = $newsData['link'];
-        $news->created_at = $newsData['pubDate'];
-        $news->source_id = $newsData['source_id'];
-
-
-        try {
-            $news->save();
-        } catch (QueryException $e) {
-            session()->put('error', __('sessions.error.dbError', [
-                'code' => $e->errorInfo[2],
-            ]));
-            return false;
-        }
-
-        return $news;
     }
 }

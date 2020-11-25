@@ -33,6 +33,7 @@ class Category extends Model
 
     protected $table = 'categories';
     public $timestamps = false;
+    protected $fillable = ['title', 'slug', 'description'];
 
     public function news(): BelongsToMany
     {

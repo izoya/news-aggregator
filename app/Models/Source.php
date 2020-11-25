@@ -30,7 +30,7 @@ class Source extends Model
 {
     use HasFactory;
     protected $table = 'sources';
-
+    protected $fillable = ['name', 'link', 'description', 'image'];
     public $timestamps = false;
 
     public function news()

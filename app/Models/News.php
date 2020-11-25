@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Str;
 
 /**
  * App\Models\News
@@ -47,7 +48,16 @@ class News extends Model
     use HasFactory;
 
     protected $table = 'news';
-    protected $fillable = ['title', 'slug', 'image', 'description', 'content', 'source_id'];
+    protected $fillable = [
+        'title',
+        'slug',
+        'image',
+        'description',
+        'content',
+        'source_id',
+        'created_at',
+        'link',
+    ];
 
     public function source()
     {

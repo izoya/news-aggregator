@@ -12,8 +12,7 @@ class NewsController extends Controller
 
     public function index(News $news)
     {
-        $news = $news->query()
-            ->where('is_published', '=', 1)
+        $news = $news->whereIsPublished(1)
             ->orderBy('created_at', 'desc')
             ->paginate($this->perPage);
 
@@ -30,7 +29,7 @@ class NewsController extends Controller
             ->where('is_published', '=', 1)
             ->first();
 
-        // Empty $news is processed in the template
+        //  NOTE: Empty $news is processed in the template
 
         return view('news.show')
             ->with('news', $news);

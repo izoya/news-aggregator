@@ -27,7 +27,7 @@ class NewsFactory extends Factory
         return [
             'title' => $title,
             'slug' => $this->faker->unique()->passthrough(Str::slug(Str::limit($title, 50))),
-            'image' => $this->faker->image('public/images/news', 300, 150, 'people', false),
+            'image' => 'news/' . $this->faker->image('storage/app/public/uploads/news', 300, 150, 'people', false),
             'description' => Str::limit($content, mt_rand(50, 150)),
             'content' => $content,
             'is_published' => true,

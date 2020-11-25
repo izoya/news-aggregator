@@ -50,7 +50,9 @@ class OrderController extends Controller
         $order = new Order();
         $result = $order->fill($data)->save();
 
-        if (!$result) return response('error', 501);
+        if (!$result) {
+            return response('error', 501);
+        }
 
         return response('success', 200);
         // return \response()->json(['created' => true]);

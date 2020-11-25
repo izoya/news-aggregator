@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\ParseNewsEvent;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\News;
 use Laravie\Parser\InvalidContentException;
+use Log;
 use XmlParser;
 
 class ParserController extends Controller
@@ -16,18 +17,18 @@ class ParserController extends Controller
             'link' => '/home/vagrant/code/laravel/storage/feed.rss',
             'category' => 'Culture',
         ],
-//        [
-//            'link' => 'https://www.bbc.com/culture/feed.rss',
-//            'category' => 'Culture',
-//        ],
-//        [
-//            'link' => 'https://abcnews.go.com/abcnews/internationalheadlines',
-//            'category' => 'World',
-//        ],
-//        [
-//            'link' => 'http://rss.cnn.com/rss/cnn_travel.rss',
-//            'category' => 'Travel',
-//        ],
+        [
+            'link' => 'https://www.bbc.com/culture/feed.rss',
+            'category' => 'Culture',
+        ],
+        [
+            'link' => 'https://abcnews.go.com/abcnews/internationalheadlines',
+            'category' => 'World',
+        ],
+        [
+            'link' => 'http://rss.cnn.com/rss/cnn_travel.rss',
+            'category' => 'Travel',
+        ],
     ];
 
     public function index()
@@ -39,13 +40,14 @@ class ParserController extends Controller
         if (count($data)) {
             event(new ParseNewsEvent($data));
         }
-        session()->remove('error');
-        if (session('error')) {
-            return back();
-        }
 
-        return redirect()->route('admin.news.index')
-            ->with('success', __('sessions.success.parsedNews', ['count' => count($data)]));
+//        return redirect()->route('admin.news.index')
+//            ->with('success', __('sessions.success.parsedNews', ['count' => count($data)]));
+
+        // TEMP: to evaluate parsing time
+        return view('admin.news.index', [
+            'news'=> News::orderBy('updated_at', 'desc')->paginate(15),
+        ]);
     }
 
     private function getParsedData(array $rssList = null): array
@@ -69,18 +71,17 @@ class ParserController extends Controller
         try {
             $xml = XmlParser::load($url);
         } catch (InvalidContentException $e) {
+            Log::error($e->getMessage());
             return [];
         }
 
         return $xml->rebase('channel')->parse([
             'title' => ['uses' => 'title'],
-            'link' => ['uses' => 'link'],
+            'link'  => ['uses' => 'link'],
             'description' => ['uses' => 'description'],
             'image' => ['uses' => 'image.url'],
             'category' => ['uses' => 'item.category'],
-            'news' => [
-                'uses' => 'item[title,description,link,pubDate,enclosure::url>image]',
-            ],
+            'news' => ['uses' => 'item[title,description,link,pubDate,enclosure::url>image]'],
         ]);
     }
 

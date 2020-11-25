@@ -3,7 +3,6 @@
 namespace App\View\Components;
 
 use App\Models\Source;
-use Dotenv\Util\Str;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -18,9 +17,7 @@ class AsideSource extends Component
      */
     public function __construct(int $id)
     {
-        $source = Source::find($id);
-        if (!$source) $source = [];
-
+        $source = Source::find($id) ?? [];
         $this->source = $source;
     }
 

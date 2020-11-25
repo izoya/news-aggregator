@@ -24,7 +24,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::query()->orderBy('updated_at', 'desc')->paginate($this->perPage);
+        $news = News::orderBy('updated_at', 'desc')
+                    ->paginate($this->perPage);
 
         return response()->view('admin.news.index', [
             'news' => $news,
@@ -56,12 +57,19 @@ class NewsController extends Controller
     public function store(NewsStore $request, News $news)
     {
         $data = $request->validated();
-        $news->slug = Str::slug($data['title']);
-        $news->image = null;
+        $data['slug'] = Str::slug($data['title']);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = uniqid('img_') . '.' . $file->getClientOriginalExtension();
+            // TODO fix symlink problem, then change the disk to 'uploads'
+            $data['image'] = $file->storeAs('news', $filename, 'temporary');
+        }
 
         try {
             $news->fill($data)->save();
-            // TODO $news->categories()->attach([ids...]);
+            $news->categories()->attach([$request->category_id]);
+            // TODO attach several categories
 
         } catch (QueryException $e) {
 

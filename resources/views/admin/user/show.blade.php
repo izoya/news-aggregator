@@ -29,7 +29,7 @@
                             @csrf @method('PUT')
                             <input type="hidden" name="is_admin" value="{{ (int)$user->is_admin }}">
                             <button class="btn btn-warning">
-                                {{ __('pages.admin.changeStatus') }}</button>
+                                {{ __('elements.button.toggleStatus') }}</button>
                         </form>
                         <a href="{{ route('admin.user.edit', $user ) }}" class="btn bg-success text-light">
                             {{ __('elements.button.edit') }}</a>
