@@ -9,7 +9,6 @@
                 <div class="single-blog-page col-md-12 col-lg-8 col-xs-12">
                     <x-article :news="$news"></x-article>
                     {{-- comment section here --}}
-                    {{-- comment-form section here --}}
                 </div>
                 {{-- article --}}
 

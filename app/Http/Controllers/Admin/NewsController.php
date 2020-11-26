@@ -7,16 +7,17 @@ use App\Http\Requests\NewsStore;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\Source;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use App\Services\NewsService;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Str;
+use Log;
+use Storage;
 
 class NewsController extends Controller
 {
-    protected $perPage = 10;
+    protected $perPage = 15;
     /**
      * Display a listing of the resource.
      *
@@ -56,42 +57,16 @@ class NewsController extends Controller
      */
     public function store(NewsStore $request, News $news)
     {
-        $data = $request->validated();
-        $data['slug'] = Str::slug($data['title']);
+        $error = (new NewsService())->saveNews($request, $news);
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = uniqid('img_') . '.' . $file->getClientOriginalExtension();
-            // TODO fix symlink problem, then change the disk to 'uploads'
-            $data['image'] = $file->storeAs('news', $filename, 'temporary');
-        }
-
-        try {
-            $news->fill($data)->save();
-            $news->categories()->attach([$request->category_id]);
-            // TODO attach several categories
-
-        } catch (QueryException $e) {
-
+        if ($error) {
             $request->flash();
 
-            return redirect()->back()
-                ->with('error', __('sessions.error.dbError', ['code' => $e->errorInfo[1]]));
+            return redirect()->back()->with('error', $error);
         }
 
         return redirect()->route('news.show', ['slug' => $news->slug])
             ->with('success', __('sessions.success.addNews'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param News $news
-     * @return Response
-     */
-    public function show(News $news)
-    {
-        //
     }
 
     /**
@@ -107,7 +82,6 @@ class NewsController extends Controller
             'categories' => Category::all(),
             'sources' => Source::all(),
         ]);
-
     }
 
     /**
@@ -119,23 +93,17 @@ class NewsController extends Controller
      */
     public function update(NewsStore $request, News $news)
     {
-        $data = $request->validated();
-        $news->slug = Str::slug($data['title']);
-        $news->image = null;
+        $oldImage = $news->image;
+        $error = (new NewsService())->saveNews($request, $news);
 
-        try {
-            $news->fill($data)->save();
-            // TODO $news->categories()->sync([ids...]);
-
-
-
-
-        } catch (QueryException $e) {
-
+        if ($error) {
             $request->flash();
 
-            return redirect()->back()
-                ->with('error', __('sessions.error.dbError', ['code' => $e->errorInfo[2]]));
+            return redirect()->back()->with('error', $error);
+        }
+
+        if ($request->hasFile('image')) {
+            Storage::disk('uploads')->delete($oldImage);
         }
 
         return redirect()->route('admin.news.index')
@@ -150,14 +118,20 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
+        $oldImage = $news->image;
         try {
             $news->delete();
             /* news_categories detach performed via DB foreign-key constraint */
-
-        } catch (QueryException $e) {
+        }
+        catch (QueryException $e) {
+            Log::error($e->getMessage());
 
             return redirect()->back()
-                ->with('error', __('sessions.error.dbError', ['code' => $e->errorInfo[1]]));
+                ->with('error', __('sessions.error.error'));
+        }
+
+        if (Storage::disk('uploads')->exists($oldImage)) {
+            Storage::disk('uploads')->delete($oldImage);
         }
 
         return redirect()->back()

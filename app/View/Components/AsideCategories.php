@@ -3,7 +3,9 @@
 namespace App\View\Components;
 
 use App\Models\Category;
+use App\Models\News;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\View\Component;
 
 class AsideCategories extends Component
@@ -17,7 +19,7 @@ class AsideCategories extends Component
      */
     public function __construct(Category $category)
     {
-        $this->categories = $category->allWithCount();
+        $this->categories = $category->withNewsCount();
     }
 
     /**

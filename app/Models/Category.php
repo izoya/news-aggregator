@@ -40,13 +40,9 @@ class Category extends Model
         return $this->belongsToMany(News::class, 'news_categories');
     }
 
-    public function allWithCount()
+    public function withNewsCount()
     {
-        return $this->join('news_categories', 'category_id', '=', $this->table . '.id')
-            ->join('news', 'news_id', '=', 'news.id')
-            ->where('news.is_published', 1)
-            ->selectRaw('categories.*, count(news.id) as count')
-            ->groupBy($this->table . '.id')->get();
+        return $this->withCount('news')->get();
     }
 
 }

@@ -6,8 +6,10 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+</div>
 @endif
 @if(session('error'))
+<div class="row">
     <div class="alert alert-danger alert-dismissible w-100 fade show" role="alert">
         {{ session('error') }}
         <button class="close" type="button" data-dismiss="alert" aria-label="Close">

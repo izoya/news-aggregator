@@ -36,9 +36,9 @@
         @error('description') <small class="form-text text-danger">{{ $message }}</small>@enderror
       </div>
       <div class="form-group">
-        <label for="content">Content</label>
+        <label for="editor">Content</label>
         <textarea class="form-control" name="content"
-                  id="content" rows="4">{!! old('content', optional($news)->content) !!}</textarea>
+                  id="editor" rows="4">{!! old('content', optional($news)->content) !!}</textarea>
           @error('content') <small class="form-text text-danger">{{ $message }}</small>@enderror
       </div>
       <div class="form-group">
@@ -83,10 +83,29 @@
     {{-- IMAGE --}}
     <div class="col-6">
         @if($news)
-{{--        <img src="{{ Storage::disk('temporary')->url($news->image) }}" alt="">--}}
-        <img src="{{ asset('uploads/' . $news->image ) }}" alt="" class="img-100">
-
+        <img src="{{ Storage::disk('uploads')->url($news->image) }}" alt="" class="img-100">
         @endif
     </div>
 </div>
 @endsection
+
+@push('js')
+    <script src="{{ asset('js/ckeditor.js') }}"></script>
+    <script>
+
+    ClassicEditor
+        .create( document.querySelector( '#editor' ),  {
+            options: {
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager/?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+            }
+        })
+        .then( editor => {
+        })
+        .catch( error => {
+        });
+</script>
+@endpush
+

@@ -3,8 +3,8 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
-// require('./bootstrap');
+// require('@ckeditor/ckeditor5-build-classic');
+require('./bootstrap.min');
 
 // window.Vue = require('vue');
 //

@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^23.1.0",
         "@mdi/font": "^5.8.55"
     }
 }

@@ -61,10 +61,9 @@
         Backend developed by Ivanova Zoya on Laravel, 2020.</footer>
     <script src="{{ asset('js/jquery-min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/form-validator.min.js') }}"></script>
     <script src="{{ asset('js/form-handler.js') }}"></script>
     <script src="{{ asset('js/material.min.js') }}"></script>
-
+@stack('js')
 </body>
 </html>

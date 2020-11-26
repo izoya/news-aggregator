@@ -8,5 +8,7 @@ return [
         'create' => 'Create',
         'save' => 'Save changes',
         'toggleStatus' => 'Toggle status',
+        'parser' => 'Run parser',
+        'addFeed' => 'Add new rss-feed',
     ],
 ];

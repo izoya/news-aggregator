@@ -3,9 +3,8 @@
 @section('content')
 
   <div class="">
-  <h1 class="pt-5">Categories</h1>
+      <x-title title="Categories"></x-title>
 </div>
-
 
   <div class="list-group pt-3 w-50">
     @foreach($categories as $cat)

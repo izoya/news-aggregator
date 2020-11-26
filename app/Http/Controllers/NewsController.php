@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    protected $perPage = 10;
+    protected $perPage = 15;
 
     public function index(News $news)
     {

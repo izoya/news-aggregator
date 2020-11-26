@@ -8,13 +8,13 @@
                 @if(Str::contains($news->image, 'http'))
                     <img src="{{ $news->image }}" class="mr-3" alt="{{ $news->title }}">
                 @elseif($news->image)
-                    <img src="{{ asset('images/news/' . $news->image) }}" class="mr-3" alt="{{ $news->title }}">
+                    <img src="{{ Storage::disk('uploads')->url($news->image) }}" class="mr-3" alt="{{ $news->title }}">
                 @else <img src="{{ asset('images/news.jpg') }}" class="mr-3" alt="{{ $news->title }}">
                 @endif
             </div>
             <div class="col-9">
                 <a href="{{ $link }}"><h2 class="post-title subtitle">{{ $news->title }}</h2></a>
-                <div class="post-date"><span><b>{{ $news->created_at->format('M d Y') }}</b></span></div>
+                <div class="post-date"><span><b>{{ optional($news->created_at)->format('M d Y') }}</b></span></div>
             </div>
         </div>
         <div class="row">

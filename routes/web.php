@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ParserController;
+use App\Http\Controllers\Admin\ResourceController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AuthController;
@@ -49,6 +50,7 @@ Route::middleware('auth')->group(function () {
                 ->name('user.status');
             Route::resource('user', AdminUserController::class);
             Route::resource('order', AdminOrderController::class);
+            Route::resource('resource', ResourceController::class);
     });
 });
 
@@ -60,13 +62,16 @@ Route::prefix('news')->group(function () {
     Route::get('/cat/{id}', [CategoryController::class, 'show'])
         ->where('id', '\d+')->name('news.category');
     Route::get('/{slug}', [NewsController::class, 'show'])
-        // ->where('slug', '\w+')
         ->name('news.show');
     });
 
 Route::resource('feedback', FeedbackController::class)->name('index', 'feedback');
 Route::resource('order', OrderController::class)->name('index', 'order');
 
-
 Route::get('/auth', [AuthController::class, 'index'])->name('auth');
 Auth::routes();
+
+
+Route::prefix('laravel-filemanager')->middleware(['web', 'auth'])->group(function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
