@@ -10,14 +10,14 @@
                     <x-article :news="$news"></x-article>
                     {{-- comment section here --}}
                 </div>
-                {{-- article --}}
 
                 {{-- sidebar --}}
                 <div class="col-md-12 col-lg-4 col-xs-12 blog-sidebar-column">
-                    @if($news) <x-aside-source :id="$news->source_id"></x-aside-source> @endif
+                    @if($news)
+                    <x-aside-source :source="$news->source"></x-aside-source>
+                    @endif
                     <x-aside-categories></x-aside-categories>
                 </div>
-                {{-- sidebar --}}
 
             </div>
         </div>

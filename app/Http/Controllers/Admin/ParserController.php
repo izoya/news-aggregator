@@ -28,9 +28,9 @@ class ParserController extends Controller
             NewsParsingJob::dispatch(new ParsingService($resource));
         }
 
-        return view('admin.news.index', [
-            'news'=> News::orderBy('updated_at', 'desc')->paginate(15),
-        ]);
+        return back()->with('success', __('sessions.success.queued', [
+            'count' =>$this->resources->count(),
+        ]));
     }
 
 

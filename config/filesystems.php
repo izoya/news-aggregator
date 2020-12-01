@@ -58,7 +58,9 @@ return [
         'uploads' => [
             'driver' => 'local',
             'root' => storage_path('app/public/uploads'),
-            'url' => env('APP_URL').'/storage/uploads',
+            /* NOTE: Do not use an absolute path below to make unisharp-filemanager
+             * returns relative paths to images */
+            'url' => '/storage/uploads',
             'visibility' => 'public',
         ],
 

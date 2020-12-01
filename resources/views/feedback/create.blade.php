@@ -12,13 +12,13 @@
        style="visibility: visible;-webkit-animation-delay: .5s; -moz-animation-delay: .5s; animation-delay: .5s;">
     <h2 class="subtitle">Find Us</h2>
     <div class="find-widget">
-      <a href="#"><i class="material-icons mdi mdi-home"></i> @include('includes.address')</a>
+      <a href="#"><i class="material-icons mdi mdi-home"></i> {{ __('pages.contacts.address') }}</a>
     </div>
     <div class="find-widget">
-      <a href="#"><i class="material-icons mdi mdi-email"></i> @include('includes.email')</a>
+      <a href="#"><i class="material-icons mdi mdi-email"></i> {{ __('pages.contacts.email') }}</a>
     </div>
     <div class="find-widget">
-      <a href="#"><i class="material-icons mdi mdi-phone mr-3"></i> @include('includes.phone')</a>
+      <a href="#"><i class="material-icons mdi mdi-phone mr-3"></i> {{ __('pages.contacts.phone') }}</a>
     </div>
   </div>
 

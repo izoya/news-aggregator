@@ -98,7 +98,6 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-// require('@ckeditor/ckeditor5-build-classic');
 __webpack_require__(/*! ./bootstrap.min */ "./resources/js/bootstrap.min.js"); // window.Vue = require('vue');
 //
 // /**

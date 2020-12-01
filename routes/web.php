@@ -17,6 +17,7 @@ use App\Http\Controllers\Socialite\SocialiteController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use UniSharp\LaravelFilemanager\Lfm;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,6 @@ Route::get('/auth', [AuthController::class, 'index'])->name('auth');
 Auth::routes();
 
 
-Route::prefix('laravel-filemanager')->middleware(['web', 'auth'])->group(function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
+Route::prefix('laravel-filemanager')->middleware(['web', 'auth', 'admin'])->group(function () {
+    Lfm::routes();
 });

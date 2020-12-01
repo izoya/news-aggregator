@@ -18,5 +18,6 @@ return [
         'addFeed' => 'The feed has been successfully added.',
         'changeFeed' => 'The feed has been changed.',
         'deleteFeed' => 'The feed has been deleted.',
+        'queued' => ':count tasks were passed to the parser.',
     ],
 ];

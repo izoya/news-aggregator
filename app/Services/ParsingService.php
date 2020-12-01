@@ -46,7 +46,7 @@ class ParsingService
             'description' => ['uses' => 'description'],
             'image' => ['uses' => 'image.url'],
             'category' => ['uses' => 'item.category'],
-            'news' => ['uses' => 'item[title,description,link,pubDate,enclosure::url>image]'],
+            'news' => ['uses' => 'item[title,description,guid>link,pubDate,enclosure::url>image]'],
         ]);
 
         return true;
@@ -64,7 +64,7 @@ class ParsingService
             'image'       => $this->data['image'],
             ]);
 
-        $categoryTitle = $this->data['category'] ?? $this->resource->category;
+        $categoryTitle = $this->resource->category ?? $this->data['category'];
         $category = Category::query()->firstOrCreate([
             'title'       => $categoryTitle,
             'slug'        => Str::slug($categoryTitle),
@@ -72,12 +72,18 @@ class ParsingService
 
         foreach ($this->data['news'] as $newsData) {
 
-            $title = Str::of($newsData['title'] ?? $newsData['description'])->limit(97);
+            $description = Str::of(trim(strip_tags($newsData['description'])))->limit(252);
+            $title = Str::of($newsData['title'] ?? $description)->limit(97);
+
+            if (empty($newsData['link']) || empty($title)) {
+                Log::info(__CLASS__ . ' - corrupted data: ' . $this->resource->link);
+                continue;
+            }
+
             $slug  = Str::of($title)->slug()->limit(100, '');
 
             if (News::query()->where('slug', $slug)->doesntExist()) {
 
-                $description = Str::of(strip_tags($newsData['description']))->limit(252);
                 $image = $newsData['image'] ?? optional($source)->image;
                 $date = $newsData['pubDate'] ?? Carbon::now();
 
@@ -91,7 +97,6 @@ class ParsingService
                         'created_at'  => $date,
                         ])
                         ->categories()->attach($category->id);
-
                 }
                 catch (QueryException $e) {
                     Log::error(__CLASS__ . ' - ' . $e->getMessage());

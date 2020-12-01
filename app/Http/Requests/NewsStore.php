@@ -24,11 +24,12 @@ class NewsStore extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:5|max:100',
-            'image' => 'sometimes|file|mimes:gif,jpeg,jpg,png|max:500',
+            'title'       => 'required|string|min:5|max:100',
+            'image'       => 'nullable|file|mimes:gif,jpeg,jpg,png|max:500',
             'description' => 'required|string|min:50|max:255',
-            'content' => 'required|string|min:150',
-            'source_id' => 'required|integer|exists:App\Models\Source,id',
+            'content'     => 'nullable|string|min:150',
+            'link'        => 'nullable|url|max:255',
+            'source_id'   => 'required|integer|exists:App\Models\Source,id',
             'category_id' => 'required|integer|exists:App\Models\Category,id',
         ];
     }
@@ -37,7 +38,8 @@ class NewsStore extends FormRequest
     {
         return [
             'category_id' => 'Category',
-            'source_id' => 'Source',
+            'source_id'   => 'Source',
+            'link' => 'External link'
         ];
     }
 }

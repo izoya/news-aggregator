@@ -1,31 +1,39 @@
-@php ($link = $n->link ?? route('news.show', ['slug' => $n->slug]) ?? '#')
-
-<div class="col mb-3">
-    <div class="media border rounded bg-light p-3" style="box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);">
+<div class="row mb-3 mx-0 bb border rounded bg-light p-3" style="box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);">
+    <div class="col-sm-4 col-md-3 p-0 text-truncate">
+        {{-- Image --}}
         @if(Str::contains($n->image, 'http'))
-              <img src="{{ $n->image }}" class="mr-3" alt="{{ $n->title }}">
+        <img src="{{ $n->image }}" class="img-100" alt="{{ $n->title }}">
         @elseif($n->image)
-              <img src="{{ Storage::disk('uploads')->url($n->image) }}" class="mr-3" alt="{{ $n->title }}">
-        @else <img src="{{ asset('images/news.jpg') }}" class="mr-3" alt="{{ $n->title }}">
+        <img src="{{ Storage::disk('uploads')->url($n->image) }}" class="img-100" alt="{{ $n->title }}">
+        @else <img src="{{ asset('images/news.jpg') }}" class="img-100" alt="">
         @endif
-        <div class="media-body">
+        {{-- Date, comments --}}
+        <p class="text-bold text-secondary pt-3">{{ optional($n->created_at)->format('M d Y') }}</p>
+        <p><a href="#"><i class="mdi mdi-comment-outline"></i> {{ $n->id }} Comments</a></p>
+    </div>
+    <div class="col-sm-8 col-md-9 p-0 d-flex flex-column justify-content-between">
+        {{-- Title & description --}}
+        <div>
             <h5 class="mt-0">
-                <a href="{{ $link }}">{{ $n->title }}</a>
+                {{-- External link --}}
+                @if ($n->link && empty($n->content))
+                    <a href="{{ $n->link }}" target="_blank">{{ $n->title }}</a>
+                    {{-- Internal link --}}
+                @else <a href="{{ route('news.show', ['slug' => $n->slug]) }}">{{ $n->title }}</a>
+                @endif
             </h5>
-            {{ $n->description }}
-            <p><span class="text-bold text-secondary">{{ optional($n->created_at)->format('M d Y') }}</span><br/>
-                <a href="#"><i class="mdi mdi-comment-outline"></i> {{ $n->id }} Comments</a></p>
-            <a href="{{ route('admin.news.edit', $n ) }}" class="btn bg-warning text-dark">
+            <div>{!! $n->description !!}</div>
+        </div>
+        {{-- Buttons --}}
+        <div class="d-flex justify-content-end mt-2">
+            <a href="{{ route('admin.news.edit', $n ) }}" class="btn btn-sm bg-warning text-dark">
                 {{ __('elements.button.edit') }}</a>
             <form method="post" action="{{ route('admin.news.destroy', $n ) }}"
                   class="d-inline" onsubmit="getConfirm()">
                 @csrf @method('DELETE')
-                <button class="btn btn-danger pointer">
+                <button class="btn btn-danger btn-sm pointer ml-2">
                     {{ __('elements.button.delete')}}</button>
             </form>
         </div>
-
     </div>
-
-
 </div>

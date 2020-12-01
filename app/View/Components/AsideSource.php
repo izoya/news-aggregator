@@ -8,16 +8,14 @@ use Illuminate\View\Component;
 
 class AsideSource extends Component
 {
-    protected $source;
+    public $source;
 
     /**
      * Create a new component instance.
-     *
-     * @param int $id
+     * @param Source $source
      */
-    public function __construct(int $id)
+    public function __construct(Source $source)
     {
-        $source = Source::find($id) ?? [];
         $this->source = $source;
     }
 
@@ -28,6 +26,6 @@ class AsideSource extends Component
      */
     public function render()
     {
-        return view('components.aside-source', ['source' => $this->source]);
+        return view('components.aside-source');
     }
 }

@@ -7,11 +7,11 @@
                 <p>Lorem ipsum dolor sit amet. Voluptates eos minus expedita illo recusandae
                     esse labore obcaecati nisi amet.</p>
                 <ul class="icon-list w-100 d-block pr-5">
-                    <li class=" pr-5"><i class="mdi mdi-map-marker"></i> @include('includes.address')</li>
+                    <li class=" pr-5"><i class="mdi mdi-map-marker"></i> {{ __('pages.contacts.address') }}</li>
                     <li class=" pr-5"><i class="mdi mdi-email"></i>
-                        <a href="mailto:mail@material.com" class="nocolor"> @include('includes.email')</a>
+                        <a href="mailto:mail@material.com" class="nocolor"> {{ __('pages.contacts.email') }}</a>
                     </li>
-                    <li><i class="mdi mdi-phone-classic"></i> @include('includes.phone')</li>
+                    <li><i class="mdi mdi-phone-classic"></i> {{ __('pages.contacts.phone') }}</li>
                 </ul>
                 <ul class="">
                     <li><a href="#"><i class="mdi mdi-facebook"></i></a></li>

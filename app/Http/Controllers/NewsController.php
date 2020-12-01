@@ -27,6 +27,7 @@ class NewsController extends Controller
         $news = News::query()
             ->where('slug', '=', $slug)
             ->where('is_published', '=', 1)
+            ->with('source')
             ->first();
 
         //  NOTE: Empty $news is processed in the template

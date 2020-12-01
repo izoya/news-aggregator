@@ -3,11 +3,18 @@
                    animation-delay: .2s;">
     @if($news)
         <div class="post-image">
-            <img src="@if($news->image) {{ Storage::disk('uploads')->url($news->image) }}
+            <img src="@if(Str::contains($news->image, 'http')) {{ $news->image }}
+                      @elseif($news->image) {{ Storage::disk('uploads')->url($news->image) }}
                       @else {{ asset('images/news.jpg') }}
                       @endif" class="img-fluid" alt="">
         </div>
         <h2>{{ $news->title }}</h2>
+        {{-- External link --}}
+        @if($news->link)
+            <p></p><a href="{{ $news->link }}" target="_blank">
+                <i class="mdi mdi-link-variant"></i>
+                {{ __('pages.news.readFull', ['source' => $news->source->name]) }}</a></p>
+        @endif
         {!! $news->content !!}
         <div class="single-post-meta">
             <div class="post-tag">

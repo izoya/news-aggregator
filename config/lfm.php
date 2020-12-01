@@ -15,7 +15,11 @@ return [
     |--------------------------------------------------------------------------
      */
 
+     //* Use relative paths (without domain)
     'use_package_routes'       => true,
+
+    'relative_paths' => false,
+
 
     /*
     |--------------------------------------------------------------------------
@@ -61,7 +65,7 @@ return [
             ],
         ],
         'image' => [
-            'folder_name'  => 'photos',
+            'folder_name'  => 'images',
             'startup_view' => 'grid',
             'max_size'     => 50000, // size in KB
             'valid_mime'   => [
@@ -89,8 +93,9 @@ return [
     | Upload / Validation
     |--------------------------------------------------------------------------
      */
+    'base_directory' => '',
 
-    'disk'                     => 'public',
+    'disk'                     => 'uploads',
 
     'rename_file'              => false,
 
@@ -100,15 +105,20 @@ return [
 
     'alphanumeric_directory'   => false,
 
-    'should_validate_size'     => false,
+    'should_validate_size'     => true,
 
-    'should_validate_mime'     => false,
+    'should_validate_mime'     => true,
 
     // behavior on files with identical name
     // setting it to true cause old file replace with new one
     // setting it to false show `error-file-exist` error and stop upload
     'over_write_on_duplicate'  => false,
 
+    //* permissions to be set when create a new folder or when it creates automatically with thumbnails
+        'create_folder_mode' => 0755,
+
+    //* permissions to be set on file upload.
+        'create_file_mode' => 0644,
     /*
     |--------------------------------------------------------------------------
     | Thumbnail

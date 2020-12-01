@@ -7,9 +7,10 @@
             <div class="author-intro">
                 <h3>{{ $source->name }}</h3>
                 <p>
-                    @if ($source->link) <a href="{{ $source->link }}">{{ $source->link }}</a>
-                    @else {{ $source->name }}
-                    @endif
+                @if ($source->link)
+                    <a href="{{ $source->link }}" target="_blank">{{ $source->link }}</a>
+                @else {{ $source->name }}
+                @endif
                 </p>
             </div>
         </div>
