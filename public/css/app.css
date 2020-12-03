@@ -40,15 +40,18 @@
     max-height: 100%;
 }
 .news-card img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
-.post-date {
+
+.news-card .post-date {
     color: #333;
     font-weight: 700;
     font-size: 14px;
     text-transform: uppercase;
 }
-.post-title {
+
+.news-card .post-title {
     font-size: 19px;
     line-height: 26px;
     letter-spacing: 0.5px;
@@ -56,10 +59,13 @@
     text-transform: capitalize;
     margin-bottom: 10px;
 }
-.post-meta {
+
+.news-card .post-meta {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding: 15px 20px 0;
 }
+
+
 #features i {
     margin-right: .7rem;
     color: #007bff;
@@ -70,4 +76,71 @@
     max-width: 100%;
     box-shadow: .2rem .2rem .7rem -0.2rem rgba(0, 0, 0, 0.65);
     border-radius: 50%;
+}
+.recent-widget .overlay {
+    float: left;
+    width: 70px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+.recent-widget .overlay figcaption {
+    display: block;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+}
+.recent-widget .overlay:hover figcaption {
+    opacity: 1;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.recent-widget .overlay figcaption i {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-80%);
+    transition: all 0.3s ease-in-out;
+    color: #fff;
+    font-size: 18px;
+}
+
+.recent-widget .overlay:hover figcaption i {
+    transform: translateY(-50%);
+    transition: all 0.3s ease-in-out;
+}
+
+.recent-post__title {
+    font-size: 15px;
+    margin: -5px 0 0;
+    line-height: 20px;
+    letter-spacing: .5px;
+}
+
+.recent-post__title a {
+    color: #fff;
+}
+.recent-post__meta span {
+    color: #aaa;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 10px;
+}
+.category-card .btn-round{
+    border-radius: 50%;
+    font-size: 22px;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    margin: 0;
 }

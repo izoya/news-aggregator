@@ -20,7 +20,6 @@
 
             </div>
         </div>
-        <!-- Mobile Menu Start -->
-        <x-mobile-menu></x-mobile-menu>
-        <!-- Mobile Menu End -->
+        <!-- Mobile Menu -->
+        @include('includes.mobile-menu')
     </nav>

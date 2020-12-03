@@ -8,8 +8,8 @@
     <li class="nav-item {{ request()->routeIs('category')?'active':'' }}">
         <a class="nav-link" href="{{ route('category') }}">Categories</a>
     </li>
-    <li class="nav-item {{ request()->routeIs('order')?'active':'' }}">
-        <a class="nav-link" href="{{ route('order') }}">Extract data</a>
+    <li class="nav-item {{ request()->routeIs('feedback.index')?'active':'' }}">
+        <a class="nav-link" href="{{ route('feedback.index') }}">Contact us</a>
     </li>
     @if(Auth::check() && Auth::user()->is_admin)
     <li class="nav-item">

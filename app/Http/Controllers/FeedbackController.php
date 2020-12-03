@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FeedbackStore;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -34,16 +35,9 @@ class FeedbackController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(FeedbackStore $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'subject' => 'required',
-            'message' => 'required',
-        ]);
-
-        $data = $request->except(['_token']);
+        $data = $request->validated();
         $feedback = new Feedback();
         $result = $feedback->fill($data)->save();
 

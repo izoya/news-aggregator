@@ -23,41 +23,17 @@
             {{-- Recent posts --}}
             <div class="col-md-6 col-lg-4 col-xl-4 recent-widget">
                 <h3 class="footer-title">Recent Posts</h3>
-                <ul class="image-list">
-                    <li>
-                        <figure class="overlay">
-                            <img class="img-fluid" src="{{ asset('images/art/a1.jpg') }}" alt="">
-                            <figcaption><a href="#"><i class="mdi mdi-link-variant from-top icon-xs"></i></a>
-                            </figcaption>
-                        </figure>
-                        <div class="post-content">
-                            <h6 class="post-title"><a href="#">Fusce gravida tortor felis Risus</a></h6>
-                            <div class="meta"><span class="date">12 Jan 2019</span></div>
+                <div class="image-list">
+                    @forelse($newsList as $news)
+                        @include('includes.recent-post')
+                    @empty
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                {{ __('pages.news.emptyNewsList') }}
+                            </div>
                         </div>
-                    </li>
-                    <li>
-                        <figure class="overlay">
-                            <img class="img-fluid" src="{{ asset('images/art/a2.jpg') }}" alt="">
-                            <figcaption><a href="#"><i class="mdi mdi-link-variant from-top icon-xs"></i></a>
-                            </figcaption>
-                        </figure>
-                        <div class="post-content">
-                            <h6 class="post-title"><a href="#">Ornare Nullam Risus Cursus</a></h6>
-                            <div class="meta"><span class="date">12 Jan 2019</span></div>
-                        </div>
-                    </li>
-                    <li>
-                        <figure class="overlay">
-                            <img class="img-fluid" src="{{ asset('images/art/a3.jpg') }}" alt="">
-                            <figcaption><a href="#"><i class="mdi mdi-link-variant from-top icon-xs"></i></a>
-                            </figcaption>
-                        </figure>
-                        <div class="post-content">
-                            <h6 class="post-title"><a href="#">Euismod Nullam Fusce Dapibus</a></h6>
-                            <div class="meta"><span class="date">12 Jan 2019</span></div>
-                        </div>
-                    </li>
-                </ul>
+                    @endforelse
+                </div>
             </div>
             {{-- Links & Subscribe --}}
             <div class="col-md-6 col-lg-4 col-xl-4 footer-contact">
@@ -80,10 +56,10 @@
                 <div class="widget">
                     <h5 class="widget-title">Useful Links</h5>
                     <ul class="unordered-list">
-                        <li><a href="#" class="nocolor">Terms of Use</a></li>
-                        <li><a href="#" class="nocolor">Privacy Policy</a></li>
-                        <li><a href="#" class="nocolor">Company Profile</a></li>
-                        <li><a href="{{ route('feedback') }}" class="nocolor text-bold">Contact us</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Company Profile</a></li>
+                        <li><a href="{{ route('feedback.index') }}" class="text-bold">Contact us</a></li>
                     </ul>
                 </div>
             </div>

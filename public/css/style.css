@@ -1172,7 +1172,7 @@ figure:hover figcaption {
   color: #3B5998
 }
 
-.single-team-widget .team-member-info .social-profiles .mdi.mdi-dribbble:hover {
+.single-team-widget .team-member-info .social-profiles .mdi.mdi-instagram:hover {
   transition: all 0.3s ease-in-out;
   color: #EA4C89
 }
@@ -1646,7 +1646,7 @@ figure:hover figcaption {
   color: #d5d5d5;
 }
 .page-footer .icon-list li a:hover {
-  color: #5166d8;
+  color: #1b7bc7;
 }
 .page-footer .icon-list li i {
   padding-right: 5px;
@@ -1677,7 +1677,7 @@ figure:hover figcaption {
   color: #d5d5d5;
 }
 .page-footer .widget .unordered-list li a:hover {
-  color: #5166d8;
+    color: #2196F3;
 }
 .page-footer .image-list {
   padding: 0;
@@ -1806,9 +1806,10 @@ figure:hover figcaption {
   transition: all 0.3s ease-in-out
 }
 
-.footer-contact-widget ul li a .mdi-dribbble:hover {
-  background: #EA4C89;
-  transition: all 0.3s ease-in-out
+.footer-contact-widget ul li a .mdi-instagram:hover {
+  background: linear-gradient(45deg, #f09433 0%, #cb6947 25%, #e23d56 50%, #c13e72 75%, #47238a 100%);
+
+    transition: all 0.3s ease-in-out
 }
 
 .footer-contact-widget ul li a .mdi-github-circle:hover {

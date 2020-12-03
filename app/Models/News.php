@@ -69,6 +69,13 @@ class News extends Model
         return $this->belongsToMany(Category::class, 'news_categories');
     }
 
+    public function getRecent($count)
+    {
+        return $this->whereIsPublished(1)
+            ->orderBy('created_at', 'desc')
+            ->take($count)->get();
+    }
+
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

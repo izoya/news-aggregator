@@ -27,7 +27,7 @@
             <div class="pl-4 my-3" id="features">
                 <div class="d-flex align-content-center">
                     <i class="mdi mdi-buffer"></i>
-                    <p>Laravel 8 + MySQL + Bootstrap</p>
+                    <p>Laravel 8 + MySQL + JavaScript + Bootstrap</p>
                 </div>
                 <div class="d-flex align-content-center">
                     <i class="mdi mdi-folder-multiple-image"></i>

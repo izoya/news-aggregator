@@ -8,7 +8,7 @@
     <ul class="categories-list">
       @foreach($categories as $cat)
         <li>
-          <a href="{{ route('news.category', ['id' => $cat->id]) }}">{{$cat->title}}</a>
+          <a href="{{ route('category.show',  ['category' => $cat]) }}">{{$cat->title}}</a>
             <span class="badge badge-warning">{{ $cat->news_count }}</span>
         </li>
       @endforeach

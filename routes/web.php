@@ -12,7 +12,6 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Socialite\SocialiteController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
@@ -57,17 +56,16 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/cat', [CategoryController::class, 'index'])->name('category');
+Route::get('/cat/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news');
-    Route::get('/cat/{id}', [CategoryController::class, 'show'])
-        ->where('id', '\d+')->name('news.category');
     Route::get('/{slug}', [NewsController::class, 'show'])
         ->name('news.show');
     });
 
-Route::resource('feedback', FeedbackController::class)->name('index', 'feedback');
-Route::resource('order', OrderController::class)->name('index', 'order');
+Route::resource('feedback', FeedbackController::class)
+    ->only(['index', 'store']);
 
 Route::get('/auth', [AuthController::class, 'index'])->name('auth');
 Auth::routes();

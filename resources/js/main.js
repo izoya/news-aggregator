@@ -7,7 +7,7 @@
 	$.material.init();
 
 	// Dropdown
-  	$('.dropdown-toggle').dropdown()
+  	// $('.dropdown-toggle').dropdown()
 
   	$('.search-icon').on('click',function() {
     $('.navbar-form').fadeIn(300);
@@ -18,7 +18,7 @@
 	 });
 
   	// Carousel
-	$('.carousel').carousel()
+	// $('.carousel').carousel()
 
 	// Preloader
     $('#preloader').fadeOut();

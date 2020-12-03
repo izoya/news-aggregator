@@ -11,13 +11,13 @@ class CategoryController extends Controller
 
     public function index(Category $category)
     {
-        return view('category.index', ['categories' => $category->all()]);
+        return view('category.index', [
+            'categories' => $category->withNewsCount(),
+        ]);
     }
 
-    public function show(int $catId)
+    public function show(Category $category)
     {
-        $category = Category::query()->find($catId);
-
         if (!$category) {
             return abort(404);
         }
@@ -25,7 +25,7 @@ class CategoryController extends Controller
         return view('news.index', [
             'title' => $category->title,
             'news' => $category->news()
-                ->where('is_published', '=', 1)
+                ->whereIsPublished(1)
                 ->paginate($this->newsPerPage),
         ]);
     }

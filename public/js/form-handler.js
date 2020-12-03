@@ -6,17 +6,17 @@ $("#userForm").validator().on("submit", function (event) {
     } else {
         // everything looks good!
         event.preventDefault();
-        submitForm(event.target.action);
+        submitForm(event.target);
     }
 });
 
-function submitForm($url) {
+function submitForm(form) {
     // Initiate Variables With Form Content
-    let formData = $("#userForm").serialize();
+    let formData = $(form).serialize();
 
     $.ajax({
         type: "POST",
-        url: $url,
+        url: form.action,
         data: formData,
         success: function (response) {
             if (response === "success") {
@@ -26,10 +26,18 @@ function submitForm($url) {
                 submitMSG(false, 'Error');
             }
         },
-        error: function (xhr, text) {
-            let resp = JSON.parse(xhr.responseText);
-            let msg = text;
-            if (resp.errors) msg = resp.message + ' ' + JSON.stringify(resp.errors);
+        error: function (xhr) {
+            let msg = xhr.responseJSON.message;
+            let errors = xhr.responseJSON.errors;
+
+            for (let inputName in errors) {
+                if (errors.hasOwnProperty(inputName)) {
+                    form[inputName].insertAdjacentHTML(
+                        'afterend',
+                        '<small class="form-text text-danger">' + errors[inputName] + '</small>'
+                    );
+                }
+            }
             formError();
             submitMSG(false, msg);
         }
@@ -38,6 +46,8 @@ function submitForm($url) {
 
 function formSuccess() {
     $("#userForm")[0].reset();
+    // TODO delete all error <small>'s
+    $("#userForm").find("small").detach();
     submitMSG(true, "Message Submitted!")
 }
 
@@ -49,10 +59,11 @@ function formError() {
 }
 
 function submitMSG(valid, msg) {
+    let msgClasses = "text-center";
     if (valid) {
-        var msgClasses = "text-center tada animated text-success";
+        msgClasses += " tada animated text-success";
     } else {
-        var msgClasses = "text-center text-danger";
+        msgClasses += " text-danger";
     }
     $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
 }
