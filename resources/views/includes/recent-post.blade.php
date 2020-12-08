@@ -11,7 +11,7 @@
             <figcaption>
                 @if ($news->link && empty($news->content))
                     <a href="{{ $news->link }}" target="_blank">
-                @else <a href="{{ route('news.show', ['slug' => $news->slug]) }}">
+                @else <a href="{{ route('news.show', ['news' => $news]) }}">
                 @endif
                 <i class="mdi mdi-link-variant from-top icon-xs"></i></a>
             </figcaption>
@@ -21,7 +21,7 @@
         <h6 class="recent-post__title">
             @if ($news->link && empty($news->content))
                 <a href="{{ $news->link }}" target="_blank">
-            @else <a href="{{ route('news.show', ['slug' => $news->slug]) }}">
+            @else <a href="{{ route('news.show', ['news' => $news]) }}">
             @endif
             {{ Str::words($news->title, 7) }}</a>
         </h6>

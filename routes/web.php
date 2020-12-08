@@ -6,8 +6,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ParserController;
-use App\Http\Controllers\Admin\ResourceController;
+use App\Http\Controllers\Admin\FeedController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -44,28 +45,35 @@ Route::middleware('auth')->group(function () {
         ->group(function () {
             Route::get('/', DashboardController::class)->name('dashboard');
             Route::get('/parser', [ParserController::class, 'index'])->name('parser');
+            Route::get('/feedback', [AdminFeedbackController::class, 'index'])->name('feedback.index');
+            Route::put('/feedback/status/{feedback}', [AdminFeedbackController::class, 'update'])
+                ->name('feedback.status');
             Route::resource('category', AdminCategoryController::class);
+            Route::delete('/category/clean/{category}', [AdminCategoryController::class, 'clean'])
+                ->name('category.clean');
             Route::resource('news', AdminNewsController::class);
             Route::put('/changeStatus/{user}', [AdminUserController::class, 'changeStatus'])
                 ->name('user.status');
             Route::resource('user', AdminUserController::class);
             Route::resource('order', AdminOrderController::class);
-            Route::resource('resource', ResourceController::class);
+            Route::resource('feed', FeedController::class);
     });
 });
 
-
-Route::get('/cat', [CategoryController::class, 'index'])->name('category');
-Route::get('/cat/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
+Route::prefix('cat')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('category');
+    Route::get('/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
+});
 
 Route::prefix('news')->group(function () {
     Route::get('/', [NewsController::class, 'index'])->name('news');
-    Route::get('/{slug}', [NewsController::class, 'show'])
-        ->name('news.show');
-    });
+    Route::get('/{news:slug}', [NewsController::class, 'show'])->name('news.show');
+});
 
-Route::resource('feedback', FeedbackController::class)
-    ->only(['index', 'store']);
+Route::prefix('feedback')->group(function () {
+    Route::get('/', [FeedbackController::class, 'index'])->name('feedback.index');
+    Route::middleware(['throttle:userFormSubmit'])->post('/', [FeedbackController::class, 'store']);
+});
 
 Route::get('/auth', [AuthController::class, 'index'])->name('auth');
 Auth::routes();

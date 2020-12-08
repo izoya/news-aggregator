@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use DB;
 use Illuminate\Database\Seeder;
 
-class ResourcesSeeder extends Seeder
+class FeedsSeeder extends Seeder
 {
     public $rssList = [
         [

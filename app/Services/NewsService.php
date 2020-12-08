@@ -17,6 +17,7 @@ class NewsService
         $data['slug'] = Str::slug($data['title']);
 
         if (News::where('slug', $data['slug'])->where('id', '<>', $news->id)->exists()) {
+
             return __('sessions.error.slugUnique');
         }
 
@@ -28,10 +29,9 @@ class NewsService
 
         try {
             $news->fill($data)->save();
-            $news->categories()->sync([$request->category_id]);
-            // TODO attach several categories
-
-        } catch (QueryException $e) {
+            $news->categories()->sync($request->category_id);
+        }
+        catch (QueryException $e) {
             Log::error($e->getMessage());
 
             return __('sessions.error.error');

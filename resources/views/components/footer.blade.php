@@ -70,7 +70,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p>Template designed and developed by <a href="https://uideck.com" rel="nofollow">UIdeck</a></p>
+                    <p class="pt-3">Developed by <a href="mailto:ivanova.zoya.r@gmail.com">Ivanova Zoya</a>, 2020.</p>
+                    <p class="pb-3">Based on template designed and developed by <a href="https://uideck.com" rel="nofollow">UIdeck</a></p>
                 </div>
             </div>
         </div>

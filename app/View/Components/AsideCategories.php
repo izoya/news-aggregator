@@ -19,7 +19,7 @@ class AsideCategories extends Component
      */
     public function __construct(Category $category)
     {
-        $this->categories = $category->withNewsCount();
+        $this->categories = $category->withNewsCount()->orderBy('slug')->get();
     }
 
     /**

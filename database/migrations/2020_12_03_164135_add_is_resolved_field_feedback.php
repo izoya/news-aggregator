@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSourcesTable extends Migration
+class AddIsResolvedFieldFeedback extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateSourcesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sources', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100);
-            $table->string('link', 255)->nullable();
-            $table->text('description')->nullable();
+        Schema::table('feedback', function (Blueprint $table) {
+            $table->boolean('is_resolved')->default(false);
         });
     }
 
@@ -28,6 +25,8 @@ class CreateSourcesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sources');
+        Schema::table('feedback', function (Blueprint $table) {
+            $table->dropColumn('is_resolved');
+        });
     }
 }

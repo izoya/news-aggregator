@@ -57,8 +57,9 @@
         </main>
 
     </div>
-    <footer class="py-3 bg-dark text-secondary text-center" style="height: 10vh;" >
-        Backend developed by Ivanova Zoya on Laravel, 2020.</footer>
+    <footer class="py-3 bg-dark text-light text-center" style="height: 10vh;" >
+        <p>Developed by <a href="mailto:ivanova.zoya.r@gmail.com">Ivanova Zoya</a>, 2020.</p>
+    </footer>
     <script src="{{ asset('js/jquery-min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/form-validator.min.js') }}"></script>

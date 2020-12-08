@@ -11,7 +11,7 @@
                 {{-- sidebar --}}
                 <div class="col-lg-3 order-lg-2 mb-3"> {{--  mb-md-2--}}
                     <div class="col">
-                        <a href="{{ route('admin.resource.create' ) }}"
+                        <a href="{{ route('admin.feed.create' ) }}"
                            class="btn btn-primary w-100"> {{-- mb-3--}}
                             {{ __('elements.button.addFeed') }}</a>
                     </div>
@@ -21,29 +21,29 @@
                 <div class="col-lg-9 order-lg-1">
                     <div class="row">
                         <div class="col no-padding">
-                            @forelse($resources as $resource)
+                            @forelse($feeds as $feed)
                                 <div class="row">
                                     {{-- title --}}
                                     <div class="col-3 text-truncate">
                                         <i class="mdi mdi-rss-box text-secondary"></i>
-                                        <a href="{{ route('admin.resource.edit', $resource) }}"
-                                           class="text-reset text-bold pl-3">{{ $resource->title }}</a>
+                                        <a href="{{ route('admin.feed.edit', $feed) }}"
+                                           class="text-reset text-bold pl-3">{{ $feed->title }}</a>
                                     </div>
                                     {{-- link --}}
                                     <div class="col-4 text-wrap text-truncate">
-                                        <a href="{{ $resource->link }}">{{ $resource->link }}</a>
+                                        <a href="{{ $feed->link }}">{{ $feed->link }}</a>
                                     </div>
                                     {{-- Category --}}
                                     <div class="col-2 text-wrap text-truncate">
-                                        {{ $resource->category }}
+                                        {{ $feed->category }}
                                     </div>
                                     {{-- buttons --}}
                                     <div class="col-1 text-right text-secondary text-nowrap">
                                         <a class="text-reset hover-info"
-                                           href="{{ route('admin.resource.edit', $resource) }}">
+                                           href="{{ route('admin.feed.edit', $feed) }}">
                                             <i class="mdi mdi-pencil mdi-18px"></i></a>
 
-                                        <form method="post" action="{{ route('admin.resource.destroy', $resource ) }}"
+                                        <form method="post" action="{{ route('admin.feed.destroy', $feed ) }}"
                                               class="d-inline" onsubmit="getConfirm()">
                                             @csrf @method('DELETE')
                                             <button class="btn btn-link text-secondary hover-danger p-0 pb-1">
@@ -65,7 +65,7 @@
 
             {{-- Pages --}}
             <div class="row">
-                {{ $resources->links() }}
+                {{ $feeds->links() }}
             </div>
         </div>
     </section>

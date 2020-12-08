@@ -6,7 +6,7 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\News;
-use App\Models\Resource;
+use App\Models\Feed;
 use App\Models\Source;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
@@ -15,26 +15,27 @@ use Log;
 use Str;
 use XmlParser;
 
+
 class ParsingService
 {
     protected $data = [];
-    /** @var Resource  */
-    protected $resource;
+    /** @var Feed  */
+    protected $feed;
 
     /**
      * ParsingService constructor.
-     * @param Resource $resource
+     * @param Feed $feed
      */
-    public function __construct(Resource $resource)
+    public function __construct(Feed $feed)
     {
-        $this->resource = $resource;
+        $this->feed = $feed;
     }
 
 
     private function parseData(): bool
     {
         try {
-            $xml = XmlParser::load($this->resource->link);
+            $xml = XmlParser::load($this->feed->link);
         } catch (InvalidContentException $e) {
             Log::error($e->getMessage());
             return false;
@@ -46,7 +47,9 @@ class ParsingService
             'description' => ['uses' => 'description'],
             'image' => ['uses' => 'image.url'],
             'category' => ['uses' => 'item.category'],
-            'news' => ['uses' => 'item[title,description,guid>link,pubDate,enclosure::url>image]'],
+            'news' => ['uses' =>
+                'item[title,description,guid>link,pubDate,enclosure::url>image,image.url>image]'
+            ],
         ]);
 
         return true;
@@ -57,18 +60,8 @@ class ParsingService
     {
         $this->parseData();
 
-        $source = Source::query()->firstOrCreate([
-            'name'        => $this->data['title'] ?? $this->resource->title,
-            'link'        => $this->data['link'],
-            'description' => $this->data['description'],
-            'image'       => $this->data['image'],
-            ]);
-
-        $categoryTitle = $this->resource->category ?? $this->data['category'];
-        $category = Category::query()->firstOrCreate([
-            'title'       => $categoryTitle,
-            'slug'        => Str::slug($categoryTitle),
-            'description' => $this->data['description'],]);
+        $source = $this->setSource();
+        $category = $this->setCategory();
 
         foreach ($this->data['news'] as $newsData) {
 
@@ -76,7 +69,7 @@ class ParsingService
             $title = Str::of($newsData['title'] ?? $description)->limit(97);
 
             if (empty($newsData['link']) || empty($title)) {
-                Log::info(__CLASS__ . ' - corrupted data: ' . $this->resource->link);
+                Log::info(__CLASS__ . ' - corrupted data: ' . $this->feed->link);
                 continue;
             }
 
@@ -103,5 +96,49 @@ class ParsingService
                 }
             }
         }
+    }
+
+    /**
+     * Return existent source by name or newly created from parsing data
+     *
+     * @return Source|null
+     */
+    private function setSource(): ?Source
+    {
+        $sourceName = $this->data['title'] ?? $this->feed->title;
+
+        $source = Source::whereName($sourceName)->first();
+
+        if (!$source) {
+            $source = Source::create([
+                'name' => $sourceName,
+                'link' => $this->data['link'],
+                'description' => $this->data['description'],
+                'image' => $this->data['image'],
+            ]);
+        }
+
+        return $source;
+    }
+
+    /**
+     * Return existent category by slug or newly created from parsing data
+     *
+     * @return Category|null
+     */
+    private function setCategory(): ?Category
+    {
+        $categoryTitle = $this->feed->category ?? $this->data['category'];
+        $slug = Str::slug($categoryTitle);
+        $category = Category::whereSlug($slug)->first();
+
+        if (!$category) {
+            $category = Category::create([
+                'title' => $categoryTitle,
+                'slug' => $slug,
+                'description' => $this->data['description'],]);
+        }
+
+        return $category;
     }
 }

@@ -42,7 +42,7 @@ class Category extends Model
 
     public function withNewsCount()
     {
-        return $this->withCount('news')->get();
+        return $this->withCount('news');
     }
 
 }

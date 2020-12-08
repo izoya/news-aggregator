@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@php
+    if(old('category_id')) $catIds = collect(old('category_id'));
+@endphp
 
 @section('content')
     {{-- TITLE --}}
@@ -16,7 +19,6 @@
     <div class="row">
         {{-- FORM --}}
         <div class="col-6">
-            {{-- TODO: after backend validation tested, apply JS validation --}}
             <form method="post" enctype="multipart/form-data"
                   action="@if(empty($news)) {{ route('admin.news.store') }}">
                 @else {{ route('admin.news.update', $news) }} "> @method('PUT')
@@ -65,11 +67,12 @@
                 {{-- Category --}}
                 <div class="form-group">
                     <label for="category_id">Category<sup class="text-danger">*</sup></label>
-                    <select class="form-control" name="category_id" id="category_id">
+                    <select class="form-control" name="category_id[]" id="category_id" multiple>
                         @forelse($categories as $cat)
-                            {{-- TODO several categories --}}
-                            <option @if(old('category_id') == $cat->id) selected @endif
-                            value="{{ $cat->id }}">{{ $cat->title }}</option>
+                            <option value="{{ $cat->id }}"
+                                @if($catIds && $catIds->contains($cat->id)) selected
+                                @endif>{{ $cat->title }}
+                            </option>
                         @empty
                             <option value="0">No categories</option>
                         @endforelse
@@ -102,7 +105,9 @@
 
         {{-- IMAGE --}}
         <div class="col-6">
-            @if($news)
+            @if(Str::contains(optional($news)->image, 'http'))
+                <img src="{{ $news->image }}" alt="" class="img-100">
+            @elseif(optional($news)->image)
                 <img src="{{ Storage::disk('uploads')->url($news->image) }}" alt="" class="img-100">
             @endif
         </div>

@@ -11,7 +11,7 @@ class NewsStore extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,7 +21,7 @@ class NewsStore extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'title'       => 'required|string|min:5|max:100',
@@ -30,11 +30,11 @@ class NewsStore extends FormRequest
             'content'     => 'nullable|string|min:150',
             'link'        => 'nullable|url|max:255',
             'source_id'   => 'required|integer|exists:App\Models\Source,id',
-            'category_id' => 'required|integer|exists:App\Models\Category,id',
+            'category_id' => 'required|array|exists:App\Models\Category,id',
         ];
     }
 
-    public function attributes()
+    public function attributes(): array
     {
         return [
             'category_id' => 'Category',

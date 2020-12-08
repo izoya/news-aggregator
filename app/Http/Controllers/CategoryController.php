@@ -12,14 +12,14 @@ class CategoryController extends Controller
     public function index(Category $category)
     {
         return view('category.index', [
-            'categories' => $category->withNewsCount(),
+            'categories' => $category->withNewsCount()->orderBy('slug')->get(),
         ]);
     }
 
     public function show(Category $category)
     {
         if (!$category) {
-            return abort(404);
+            abort(404);
         }
 
         return view('news.index', [

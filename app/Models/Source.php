@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin Eloquent
  * @property-read Collection|News[] $news
  * @property-read int|null $news_count
+ * @property string|null $image
+ * @method static Builder|Source whereImage($value)
  */
 class Source extends Model
 {

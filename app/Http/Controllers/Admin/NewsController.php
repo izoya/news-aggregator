@@ -43,6 +43,7 @@ class NewsController extends Controller
     {
         return response()->view('admin.news.form', [
             'news' => null,
+            'catIds' => null,
             'categories' => Category::all(),
             'sources' => Source::all(),
         ]);
@@ -65,7 +66,7 @@ class NewsController extends Controller
             return redirect()->back()->with('error', $error);
         }
 
-        return redirect()->route('news.show', ['slug' => $news->slug])
+        return redirect()->route('news.show', ['news' => $news])
             ->with('success', __('sessions.success.addNews'));
     }
 
@@ -75,10 +76,11 @@ class NewsController extends Controller
      * @param News $news
      * @return Response
      */
-    public function edit(News $news)
+    public function edit(News $news): Response
     {
         return response()->view('admin.news.form', [
             'news' => $news,
+            'catIds' => $news->categories,
             'categories' => Category::all(),
             'sources' => Source::all(),
         ]);
@@ -91,7 +93,7 @@ class NewsController extends Controller
      * @param News $news
      * @return RedirectResponse
      */
-    public function update(NewsStore $request, News $news)
+    public function update(NewsStore $request, News $news): RedirectResponse
     {
         $oldImage = $news->image;
         $error = (new NewsService())->saveNews($request, $news);

@@ -6,7 +6,7 @@ use App\Events\ParseNewsEvent;
 use App\Http\Controllers\Controller;
 use App\Jobs\NewsParsingJob;
 use App\Models\News;
-use App\Models\Resource;
+use App\Models\Feed;
 use App\Services\ParsingService;
 use Laravie\Parser\InvalidContentException;
 use Log;
@@ -19,7 +19,7 @@ class ParserController extends Controller
 
     public function __construct()
     {
-        $this->resources = Resource::all();
+        $this->resources = Feed::all();
     }
 
     public function index()

@@ -46,7 +46,6 @@ function submitForm(form) {
 
 function formSuccess() {
     $("#userForm")[0].reset();
-    // TODO delete all error <small>'s
     $("#userForm").find("small").detach();
     submitMSG(true, "Message Submitted!")
 }

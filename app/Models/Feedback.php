@@ -29,6 +29,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Feedback whereSubject($value)
  * @method static Builder|Feedback whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property int $is_resolved
+ * @method static Builder|Feedback whereIsResolved($value)
  */
 class Feedback extends Model
 {

@@ -139,7 +139,7 @@ class UserController extends Controller
         }
 
         return redirect()->back()
-            ->with('success', __('sessions.success.updateStatus'));
+            ->with('success', __('sessions.success.status'));
 
     }
 

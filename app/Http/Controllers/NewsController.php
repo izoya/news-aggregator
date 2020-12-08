@@ -22,16 +22,8 @@ class NewsController extends Controller
         ]);
     }
 
-    public function show(string $slug)
+    public function show(News $news)
     {
-        $news = News::query()
-            ->where('slug', '=', $slug)
-            ->where('is_published', '=', 1)
-            ->with('source')
-            ->first();
-
-        //  NOTE: Empty $news is processed in the template
-
         return view('news.show')
             ->with('news', $news);
     }

@@ -13,15 +13,22 @@ return [
     'admin' => [
         'createNews' => 'Create news',
         'editNews' => 'Edit news #:id',
-        'addResource' => 'Add new rss feed',
         'editResource' => 'Edit rss feed',
+        'editCategory' => 'Edit category',
+        'addResource' => 'Add new rss feed',
+        'addCategory' => 'Add new category',
         'emptyUsersList' => 'No users found.',
         'emptyFeedList' => 'No feeds found.',
+        'emptyFeedbackList' => 'No feedback yet.',
+        'emptyCategoryList' => 'No category found.',
         'rssLink' => 'Feed url',
+        'unresolved' => 'Requires attention',
+        'resolved' => 'Resolved',
     ],
     'forms' => [
         'title' => 'Title',
         'category' => 'Category',
+        'description' => 'Description',
         'newsLink' => 'Link for external article',
 
     ],

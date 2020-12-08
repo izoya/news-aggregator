@@ -10,5 +10,6 @@ return [
         'toggleStatus' => 'Toggle status',
         'parser' => 'Run parser',
         'addFeed' => 'Add new rss-feed',
+        'addCategory' => 'Add category',
     ],
 ];

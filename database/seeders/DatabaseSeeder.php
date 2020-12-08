@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NewsSeeder::class);
         $this->call(NewsCategoriesSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(FeedsSeeder::class);
 
         // \App\Models\User::factory(10)->create();
     }

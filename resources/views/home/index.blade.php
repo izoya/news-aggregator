@@ -6,10 +6,9 @@
 {{-- Content --}}
 <div class="row">
     {{-- Photo & buttons --}}
-    <div class="col-12 col-sm-2">
-        <img src="{{ asset('images/author.png') }}" alt="Zoya Ivanova"
-             class="photo mb-5">
-        <div class="d-flex flex-column">
+    <div class="col-12 col-sm-2 col-md-3 d-flex flex-row flex-sm-column align-items-center mb-5">
+        <img src="{{ asset('images/author.png') }}" alt="Zoya Ivanova" class="photo mb-sm-5">
+        <div class="d-flex flex-column  ml-5 ml-sm-0">
         <a href="https://github.com/izoya/laravel-course" class="btn btn-common btn-xs mr-3 w-100">
             Explore at Github</a>
         <a href="mailto:ivanova.zoya.r@gmail.com" class="btn btn-raised btn-success btn-xs w-100">
@@ -17,7 +16,7 @@
         </div>
     </div>
     {{-- About project --}}
-    <div class="col-6 ml-5">
+    <div class="col-12 col-sm-8 col-md-8 ml-sm-3 ml-md-5">
         <div class="p-6 bg-gray-100">
             <p>Greetings!</p>
             <p>I'm Zoya, the developer of this news aggregator website.
