@@ -46,7 +46,7 @@
                 </div>
             </div>
             <h6><strong>Try on admin features</strong></h6>
-            <p><a href="{{ route('login') }}">Login</a> with admin@mail.com
+            <p><a href="{{ route('login') }}">Login</a> with admin@admin.com
                 and password '123' to get access to the
                 <a href="{{ route('admin.dashboard') }}">Admin panel</a>.</p>
         </div>

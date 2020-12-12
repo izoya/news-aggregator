@@ -7,6 +7,9 @@ use Illuminate\View\Component;
 
 class Footer extends Component
 {
+    /**
+     * @var int
+     */
     public $newsList;
     protected $recentNewsCount = 3;
 

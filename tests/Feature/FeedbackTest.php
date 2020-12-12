@@ -9,9 +9,7 @@ use Tests\TestCase;
 class FeedbackTest extends TestCase
 {
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     * Assert feedback form page availability.
      */
     public function testFeedbackFormPage()
     {
@@ -19,6 +17,9 @@ class FeedbackTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Assert feedback form page availability.
+     */
     public function testFeedbackFormHandler()
     {
         $response = $this->post('/feedback', [
@@ -27,6 +28,8 @@ class FeedbackTest extends TestCase
             'subject' => 'subject',
             'message' => 'message',
         ]);
+
+        $response->dumpHeaders();
 
         $response
             ->assertStatus(200)

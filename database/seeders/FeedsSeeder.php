@@ -31,7 +31,7 @@ class FeedsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('resources')->insert($this->getData());
+        DB::table('feeds')->insert($this->getData());
     }
 
     private function getData()

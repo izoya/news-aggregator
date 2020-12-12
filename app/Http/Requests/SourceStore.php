@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FeedbackStore extends FormRequest
+class SourceStore extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,17 @@ class FeedbackStore extends FormRequest
     public function rules(): array
     {
         return [
-            'name'    => 'required|string|max:255',
-            'email'   => 'required|string|max:255|email',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string',
+            'name' => 'required|string|max:100',
+            'link' => 'nullable|url|max:255',
+            'description' => 'nullable|string|max:255',
+            'image' => 'nullable|url|max:100', // not file, image link here
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'image' => 'Image Link',
         ];
     }
 }

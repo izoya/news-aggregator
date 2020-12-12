@@ -16,9 +16,6 @@
     <li class="nav-item {{ request()->routeIs('admin.category.index')?'active':'' }}">
         <a class="nav-link" href="{{ route('admin.category.index') }}">Categories</a>
     </li>
-    <li class="nav-item {{ request()->routeIs('admin.feedback.index')?'active':'' }}">
-        <a class="nav-link" href="{{ route('admin.feedback.index') }}">Feedback</a>
-    </li>
     <li class="nav-item dropdown {{ request()->routeIs('admin.resource.index')?'active':'' }}">
         <a class="nav-link dropdown-toggle" id="rssDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -29,6 +26,13 @@
             <a class="dropdown-item" href="{{ route('admin.feed.create') }}">Add feed</a>
         </div>
     </li>
+    <li class="nav-item {{ request()->routeIs('admin.source.index')?'active':'' }}">
+        <a class="nav-link" href="{{ route('admin.source.index') }}">Sources</a>
+    </li>
+    <li class="nav-item {{ request()->routeIs('admin.feedback.index')?'active':'' }}">
+        <a class="nav-link" href="{{ route('admin.feedback.index') }}">Feedback</a>
+    </li>
+
     <li class="">
         <a class="nav-link bg-primary text-light ml-lg-5 px-2" style="border-radius: .25rem;"
            href="{{ route('admin.parser') }}">{{ __('elements.button.parser') }}</a>

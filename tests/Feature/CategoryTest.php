@@ -9,24 +9,24 @@ use Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
+    /**
+     * Assert category index page availability.
+     */
     public function testCategoryIndex()
     {
         $response = $this->get('/cat');
         $response->assertStatus(200);
     }
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testSideCategoriesComponent()
-    {
-        $category = new Category();
-        $category_name = $category
-            ->find($category->all()->random()->id)->title;
-        $view = $this->blade('<x-aside-categories/>');
 
-        $view
-          ->assertSee($category_name);
+    /**
+     * Assert category show page availability.
+     */
+    public function testCategoryShow()
+    {
+        $category = Category::first();
+        $response = $this->get('/cat/' . $category->slug);
+
+        $response->assertStatus(200)
+        ->assertSee($category->title);
     }
 }

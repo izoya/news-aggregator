@@ -29,7 +29,7 @@ class CategoriesSeeder extends Seeder
             $data[] = [
                 'title' => $titles[$i],
                 'slug' => Str::slug($titles[$i]),
-                'description' => $faker->optional()->realText(mt_rand(100, 200)),
+                'description' => $faker->realText(mt_rand(50, 200)),
             ];
         }
 

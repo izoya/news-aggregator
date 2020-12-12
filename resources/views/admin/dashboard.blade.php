@@ -118,16 +118,12 @@
                                 <a class="text-reset hover-info"
                                    href="{{ route('admin.category.edit', $category) }}">
                                     <i class="mdi mdi-pencil"></i></a>
-
                                 <form method="post" action="{{ route('admin.category.destroy', $category ) }}"
                                       class="d-inline" onsubmit="getConfirm()">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-link text-secondary hover-danger p-0 pb-1">
                                         <i class="mdi mdi-delete"></i></button>
                                 </form>
-
-                                <a class="" href="#">
-                                </a>
                             </div>
                         </div>
                     @empty
@@ -186,6 +182,52 @@
             </div>
             <div class="card-footer">
                 <a href="{{ route('admin.feed.index') }}">See all <i class="mdi mdi-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    {{-- SOURCES --}}
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-header text-uppercase">SOURCES
+                <a href="{{ route('admin.source.create' ) }}" class="d-inline btn btn-primary btn-sm float-right">
+                    {{ __('elements.button.addSource') }}</a>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-column">
+                    @forelse($sources as $source)
+                        <div class="row">
+                            {{-- title --}}
+                            <div class="col-4 text-truncate text-bold">
+                                <i class="mdi mdi-bullhorn text-success pr-2"></i>
+                                @if($source->link)<a href="{{ $source->link }}" target="_blank">
+                                    {{ $source->name }}</a>
+                                @else{{ $source->name }}
+                                @endif
+                            </div>
+                            {{-- description --}}
+                            <div class="col-6 text-truncate pl-0">{{ $source->description }}</div>
+                            {{-- buttons --}}
+                            <div class="col-2 text-right text-secondary">
+                                <a class="text-reset hover-info"
+                                   href="{{ route('admin.source.edit', $source) }}">
+                                    <i class="mdi mdi-pencil"></i></a>
+
+                                <form method="post" action="{{ route('admin.source.destroy', $source ) }}"
+                                      class="d-inline" onsubmit="getConfirm()">
+                                    @csrf @method('DELETE')
+                                    <button class="btn btn-link text-secondary hover-danger p-0 pb-1">
+                                        <i class="mdi mdi-delete"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    @empty
+                        <p>{{ __('pages.admin.emptySourceListList') }}</p>
+                    @endforelse
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="{{ route('admin.source.index') }}">See all <i class="mdi mdi-arrow-right"></i></a>
             </div>
         </div>
     </div>

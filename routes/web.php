@@ -4,9 +4,9 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
-use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ParserController;
 use App\Http\Controllers\Admin\FeedController;
+use App\Http\Controllers\Admin\SourceController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
 use App\Http\Controllers\FeedbackController;
@@ -38,25 +38,35 @@ Route::middleware('guest')->prefix('login')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/account', [AccountController::class, 'index'])->name('account');
-    Route::prefix('admin')
-        ->middleware('admin')
-        ->name('admin.')
-        ->group(function () {
-            Route::get('/', DashboardController::class)->name('dashboard');
-            Route::get('/parser', [ParserController::class, 'index'])->name('parser');
-            Route::get('/feedback', [AdminFeedbackController::class, 'index'])->name('feedback.index');
-            Route::put('/feedback/status/{feedback}', [AdminFeedbackController::class, 'update'])
-                ->name('feedback.status');
-            Route::resource('category', AdminCategoryController::class);
-            Route::delete('/category/clean/{category}', [AdminCategoryController::class, 'clean'])
+
+    Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+        /**  Dashboard  */
+        Route::get('/', DashboardController::class)->name('dashboard');
+        /**  Categories */
+        Route::resource('category', AdminCategoryController::class);
+        Route::delete('/category/clean/{category}', [AdminCategoryController::class, 'clean'])
                 ->name('category.clean');
-            Route::resource('news', AdminNewsController::class);
-            Route::put('/changeStatus/{user}', [AdminUserController::class, 'changeStatus'])
+        /**  Feeds      */
+        Route::resource('feed', FeedController::class);
+        /**  Feedback   */
+        Route::get('/feedback', [AdminFeedbackController::class, 'index'])->name('feedback.index');
+        Route::put('/feedback/status/{feedback}', [AdminFeedbackController::class, 'update'])
+            ->name('feedback.status');
+        /**  News       */
+        Route::resource('news', AdminNewsController::class);
+        /**  Parser     */
+        Route::get('/parser', [ParserController::class, 'index'])->name('parser');
+        /**  Sources    */
+        Route::resource('source', SourceController::class)->except(['show']);
+        Route::delete('/source/clean/{source}', [SourceController::class, 'clean'])
+            ->name('source.clean');
+        /**  Users      */
+        Route::resource('user', AdminUserController::class);
+        Route::put('/user/{user}/status', [AdminUserController::class, 'changeStatus'])
                 ->name('user.status');
-            Route::resource('user', AdminUserController::class);
-            Route::resource('order', AdminOrderController::class);
-            Route::resource('feed', FeedController::class);
+
     });
 });
 

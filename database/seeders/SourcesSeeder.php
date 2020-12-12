@@ -18,16 +18,16 @@ class SourcesSeeder extends Seeder
         DB::table('sources')->insert($this->getData());
     }
 
-    private function getData()
+    private function getData(): array
     {
         $faker = Factory::create('en_US');
         $data[] = [
             'name' => 'Admin',
             'link' => null,
-            'description'=> null,
+            'description'=> 'A wonderful admin here gets you the most interesting news ever!',
         ];
 
-        for ($i = 0; $i < 9; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             $data[] = [
                 'name' => $faker->catchPhrase,
                 'link' => $faker->url,

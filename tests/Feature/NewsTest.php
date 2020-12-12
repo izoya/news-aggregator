@@ -11,10 +11,9 @@ use Tests\TestCase;
 class NewsTest extends TestCase
 {
     use WithFaker;
+
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     * Assert news index page availability.
      */
     public function testNewsIndex()
     {
@@ -22,32 +21,14 @@ class NewsTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * Assert news show page availability.
+     */
     public function testOneNewsPage()
     {
-        $news = News::all()->random();
+        $news = News::whereIsPublished(true)->first(['slug']);
         $response = $this->get('/news/' . $news->slug);
 
         $response->assertStatus(200);
-    }
-
-    public function testNewsByCategory()
-    {
-        $category = new Category();
-        $catId = $category->all()->random()->id;
-        $response = $this->get('/news/cat/' . $catId);
-
-        $response->assertStatus(200);
-    }
-
-
-
-    public function testNewsCategoryTitle()
-    {
-        $view = $this->view('news.index', [
-            'title' => 'MyTitle',
-            'news' => [],
-        ]);
-
-        $view->assertSee('MyTitle');
     }
 }

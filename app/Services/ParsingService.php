@@ -48,7 +48,7 @@ class ParsingService
             'image' => ['uses' => 'image.url'],
             'category' => ['uses' => 'item.category'],
             'news' => ['uses' =>
-                'item[title,description,guid>link,pubDate,enclosure::url>image,image.url>image]'
+                'item[title,description,guid>link,pubDate,enclosure::url>image1,image.url>image2]'
             ],
         ]);
 
@@ -76,8 +76,8 @@ class ParsingService
             $slug  = Str::of($title)->slug()->limit(100, '');
 
             if (News::query()->where('slug', $slug)->doesntExist()) {
-
-                $image = $newsData['image'] ?? optional($source)->image;
+                Log::info($newsData);
+                $image = $newsData['image1'] ?? $newsData['image2']?? $source->image;
                 $date = $newsData['pubDate'] ?? Carbon::now();
 
                 try {

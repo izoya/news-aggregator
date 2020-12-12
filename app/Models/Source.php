@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Source
@@ -35,8 +37,14 @@ class Source extends Model
     protected $fillable = ['name', 'link', 'description', 'image'];
     public $timestamps = false;
 
-    public function news()
+
+    public function news(): HasMany
     {
         return $this->hasMany(News::class);
+    }
+
+    public function withNewsCount()
+    {
+        return $this->withCount('news');
     }
 }

@@ -68,7 +68,7 @@ class CategoryController extends Controller
         }
 
         return redirect()->route('admin.category.index')
-            ->with('success', __('sessions.success.addFeed'));
+            ->with('success', __('sessions.success.addCategory'));
     }
 
     /**

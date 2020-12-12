@@ -18,11 +18,11 @@ class NewsCategoriesSeeder extends Seeder
         DB::table('news_categories')->insert($this->getData());
     }
 
-    private function getData()
+    private function getData(): array
     {
         $data = [];
 
-        for($i=1; $i <= 60; $i++) {
+        for($i=1; $i <= 5; $i++) {
             $data[] = [
                 'category_id' => mt_rand(1, 6),
                 'news_id' => $i,

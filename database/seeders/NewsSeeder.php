@@ -15,6 +15,6 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        News::factory()->times(10)->create();
+        News::factory()->times(5)->create();
     }
 }
