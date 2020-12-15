@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <section class="Material-blog-post-page section-padding">
+    <section class="section-padding">
         <div class="container">
             <div class="row">
 

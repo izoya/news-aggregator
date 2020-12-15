@@ -53,7 +53,7 @@
   .slicknav_nav ul {
     display: block; }
   .slicknav_nav li {
-    display: block; 
+    display: block;
     line-height: 30px;
   }
   .slicknav_nav li:not(:first-child){
@@ -94,7 +94,7 @@
     text-shadow: 0 1px 3px #000; }
 
 .slicknav_btn {
-  border: 1px solid;
+  /* border: 1px solid; */
   border-radius: 0;
   margin: 16px 15px;
   -webkit-transition: all 0.2s linear;
@@ -109,7 +109,7 @@
   list-style: outside none none;
   margin: 0;
   max-height: 350px;
-  overflow-y: scroll;
+  /* overflow-y: scroll;*/
   padding: 0;
   width: 100%;
 }

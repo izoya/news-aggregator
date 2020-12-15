@@ -2,16 +2,19 @@
         <div class="container">
 
             <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="mdi mdi-menu"></span>
                 </button>
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{ asset('images/logo.png') }}" alt=""></a>
             </div>
+
             <div class="collapse navbar-collapse" id="main-navbar">
             @include('includes.menu')
-            {{-- Search Box here --}}
+{{--             Search Box here--}}
 
                 <ul class="navbar-nav border-left ml-2 pl-2">
                     <!-- Authentication Links -->

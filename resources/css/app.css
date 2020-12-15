@@ -18,8 +18,7 @@
     position: absolute;
     top: 90%;
     transition: 0.5s all ease-in-out;
-    -webkit-animation: 0.4s ease 0s normal none 1 running fadeInUpMenu;
-            animation: 0.4s ease 0s normal none 1 running fadeInUpMenu;
+    animation: 0.4s ease 0s normal none 1 running fadeInUpMenu;
 }
 
 .hover-danger:hover, .hover-danger:focus {

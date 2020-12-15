@@ -3,7 +3,7 @@ return [
     'contacts' => [
         'address' => '333 George St, Sydney, NSW',
         'email'   => 'mail@awesomenews.com',
-        'phone'   => '+7(924) 100-78-78',
+        'phone'   => '+7 (924) 100-78-78',
     ],
     'news' => [
         'showNewsNotFound' => 'We sought everywhere but didn\'t found the news you\'re looking for :\\',

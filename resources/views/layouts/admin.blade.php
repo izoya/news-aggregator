@@ -6,11 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Admin') }}</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}" >
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mdi.css') }}">
     <style>
         .admin-login-text {
             color:#f8f9fa!important
@@ -35,10 +33,8 @@
                         {{-- Menu --}}
                         @include('admin.includes.menu')
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Authentication Links -->
                         @include('includes.auth-links')
                     </ul>
@@ -47,24 +43,17 @@
         </nav>
 
         <main class="container my-5">
-
         {{-- Alert --}}
         @include('includes.alert')
 
         {{-- Content --}}
         @yield('content')
-
         </main>
-
     </div>
     <footer class="py-3 bg-dark text-light text-center" style="height: 10vh;" >
         <p>Developed by <a href="mailto:ivanova.zoya.r@gmail.com">Ivanova Zoya</a>, 2020.</p>
     </footer>
-    <script src="{{ asset('js/jquery-min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/form-validator.min.js') }}"></script>
-    <script src="{{ asset('js/form-handler.js') }}"></script>
-    <script src="{{ asset('js/material.min.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 @stack('js')
 </body>
 </html>

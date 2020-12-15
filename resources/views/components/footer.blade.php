@@ -1,4 +1,4 @@
-<footer class="page-footer center-on-small-only  pt-0 footer-widget-container">
+<footer class="page-footer pt-0 footer-widget-container">
     <div class="container pt-5 mb-5">
         <div class="row">
             {{-- Contacts --}}
@@ -42,11 +42,10 @@
                     <div class="newsletter-wrapper">
                         <form method="" id="subscribe-form" name="subscribe-form" class="validate" action="#">
                             <div class="form-group is-empty">
-                                <input type="email" value="" name="EMAIL" class="email form-control" id="EMAIL"
-                                       placeholder="Email Address" required="">
+                                <input type="email" value="" name="EMAIL" class="email form-control mr-2" id="EMAIL"
+                                       placeholder="Email Address" style="width: 12rem!important;" required="">
                                 <button type="submit" name="subscribe" id="subscribe"
-                                        class="btn btn-common pull-right">Join
-                                </button>
+                                        class="btn btn-common">Join</button>
                                 <div class="clearfix"></div>
                             </div>
                         </form>

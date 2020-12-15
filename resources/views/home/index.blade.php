@@ -17,7 +17,7 @@
     </div>
     {{-- About project --}}
     <div class="col-12 col-sm-8 col-md-8 ml-sm-3 ml-md-5">
-        <div class="p-6 bg-gray-100">
+        <div>
             <p>Greetings!</p>
             <p>I'm Zoya, the developer of this news aggregator website.
                I've created it for study and portfolio purposes.

@@ -40,7 +40,6 @@
                 @else href="{{ route('news.show', ['news' => $news]) }}">
                 @endif
                 <i class="material-icons mdi mdi-arrow-right"></i>
-                    <div class="ripple-container"></div>
                 </a>
             </div>
         </div>
