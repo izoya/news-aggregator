@@ -2,8 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\Feedback;
 use Tests\TestCase;
 
 class FeedbackTest extends TestCase
@@ -18,22 +17,44 @@ class FeedbackTest extends TestCase
     }
 
     /**
-     * Assert feedback form page availability.
+     * Assert that after correct feedback form submitting, status 'success' is returned
+     * and a database entry is created.
      */
-    public function testFeedbackFormHandler()
+    public function testCorrectFeedbackFormSubmit()
     {
-        $response = $this->post('/feedback', [
-            'name' => 'Sally',
-            'email' => 'some@mail.com',
-            'subject' => 'subject',
-            'message' => 'message',
-        ]);
-
-        $response->dumpHeaders();
+        $model = new Feedback();
+        $formData = $user = $model->factory()->make()->toArray();
+        $response = $this->withoutMiddleware()->post('/feedback', $formData);
 
         $response
             ->assertStatus(200)
             ->assertSeeText('success');
 
+        $this->assertDatabaseHas($model->getTable(), [
+            'email' => $formData['email'],
+        ]);
+    }
+
+    /**
+     * Assert that empty feedback form submit returns validation errors and an appropriate status.
+     */
+    public function testEmptyFeedbackFormSubmit()
+    {
+        $response = $this->withoutMiddleware()->post('/feedback', [
+            'name' => '',
+            'email' => '',
+            'subject' => '',
+            'message' => '',
+        ]);
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect()
+            ->assertSessionHasErrorsIn('default', [
+                'name' => 'The name field is required.',
+                'email' => 'The email field is required.',
+                'subject' => 'The subject field is required.',
+                'message' => 'The message field is required.',
+            ]);
     }
 }

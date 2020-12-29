@@ -11,7 +11,7 @@ I've created it for study and portfolio purposes.
 
 
 ##### Try on admin features
-Login with admin@mail.com and password '123' to get access to the Admin panel.
+Login with admin@admin.com and password '123' to get access to the Admin panel.
 
 [Explore at Github](https://github.com/izoya/laravel-course)
 
